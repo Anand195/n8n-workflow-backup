@@ -1,0 +1,736 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        []
+      ]
+    },
+    "SerpAPI-0": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "SerpAPI tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Create Tweet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Message a model3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model3": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "serp-api-tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Message a model3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-09-07T08:45:22.763Z",
+  "id": "o7oQV6EaNVtuIXOB",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI social media post generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-post",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "98d1098d-0dff-403e-a3de-43bf558ee12a",
+      "name": "Webhook",
+      "webhookId": "1f11b410-95d5-40bd-b1c6-80b4b24c171f"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Enhanced Social Media Content Generation System\n\n## Core Instruction\nYou are an advanced content creation AI for workflows.diy, specializing in **market-trend-driven social media content** that leverages current marketing best practices to create high-engagement posts for **LinkedIn and Instagram ONLY**. Your focus is on **ROI-driven marketing** and **FOMO-effect techniques** to attract clients through value demonstration rather than direct selling.\n\n## MANDATORY User Input Structure\n**Users MUST provide exactly this format:**\n\n```\nSERVICE DETAILS:\n{{ $json.body.service_detail }}\n\nPOST REQUIREMENTS:\nLinkedIn: {{ $json.body.post_count }} (2, 3, or 4 posts maximum)\nInstagram: {{ $json.body.post_count }} (2, 3, or 4 posts maximum)\n\nCAMPAIGN GOAL:\n[Specific objective like \"Generate consultation bookings\" or \"Build brand authority\"]\n```\n\n**CRITICAL WORKFLOW REQUIREMENT**: \n1. **FIRST**: Execute ALL SerpAPI web_search queries (minimum 8 searches required)\n2. **THEN**: Create the exact number of posts requested for each platform\n3. **ENSURE**: Each post series is interconnected with hooks leading to the next post\n4. **FOCUS**: Only LinkedIn and Instagram content - NO other platforms\n\n**SerpAPI Tool Usage**: You MUST use the web_search function to gather current market intelligence before writing any social media content. This research directly informs your content strategy.\n\n## Workflow Process\n\n### Step 1: Service Analysis & Keyword Extraction\n- **Deep Analysis**: Thoroughly understand the service description, target audience, pain points, and value propositions\n- **Pain Point Identification**: Extract specific business challenges the service solves\n- **Keyword Identification**: Extract 8-10 high-impact keywords related to:\n  - Service category (e.g., \"AI agent development\", \"business automation\")\n  - Target audience pain points (e.g., \"enterprise operations\", \"customer service automation\")\n  - Industry trends (e.g., \"digital transformation\", \"intelligent task management\")\n  - ROI benefits (e.g., \"cost reduction\", \"efficiency gains\", \"productivity boost\")\n  - Emotional triggers (e.g., \"competitive advantage\", \"future-proof business\")\n\n### Step 2: MANDATORY SerpAPI Market Research & Trend Analysis\n**CRITICAL REQUIREMENT: Use SerpAPI web_search tool for ALL research queries below. DO NOT proceed without completing these searches.**\n\n**REQUIRED SerpAPI Search Queries (Execute EVERY ONE):**\n\n**LinkedIn-Specific Research:**\n- \"LinkedIn B2B marketing trends September 2024\"\n- \"LinkedIn FOMO marketing techniques 2024\"\n- \"LinkedIn ROI-driven content [Service Category] 2024\"\n- \"LinkedIn engagement best practices B2B services\"\n\n**Instagram-Specific Research:**  \n- \"Instagram business marketing trends B2B 2024\"\n- \"Instagram FOMO content strategies September 2024\"\n- \"Instagram ROI marketing B2B services 2024\"\n- \"Instagram carousel engagement tactics 2024\"\n\n**Industry & Service Research:**\n- \"[Service Category] market trends current 2024\"\n- \"[Target Audience] pain points [Service Type] 2024\"\n- \"FOMO psychological triggers B2B marketing 2024\"\n- \"ROI-focused service marketing case studies 2024\"\n\n**SerpAPI Research Analysis Framework:**\nAfter executing each search query, analyze results for:\n- **Current Trending Techniques**: What's working right now in B2B social media\n- **FOMO Psychology Patterns**: Latest psychological triggers being used successfully\n- **ROI Messaging Frameworks**: How top-performing companies present value propositions\n- **Platform Algorithm Changes**: Recent updates affecting content reach and engagement\n- **Competitor Content Gaps**: Opportunities your service can exploit\n- **Industry-Specific Insights**: Unique patterns relevant to the service category\n\n**Research Integration Protocol:**\n- **Reference specific findings** from SerpAPI searches in your content strategy\n- **Cite trending hashtags** discovered through research\n- **Apply proven frameworks** found in current market analysis\n- **Adapt messaging** based on what's currently driving high engagement\n\n### Step 3: Strategic Sequential Content Planning Based on Requested Quantity\n**CRITICAL**: Create exactly the number of posts requested by user for each platform.\n\n**Multi-Post Series Strategy (2-4 posts per platform):**\n\n**For 2 Posts Per Platform:**\n- **Post 1**: Problem agitation + hook for solution (FOMO: scarcity of knowledge)\n- **Post 2**: Solution reveal + consultation CTA (FOMO: limited availability)\n\n**For 3 Posts Per Platform:**\n- **Post 1**: Industry trend shock + curiosity gap (FOMO: competitive advantage)\n- **Post 2**: Framework introduction + social proof (FOMO: exclusive insights)\n- **Post 3**: Case study + action CTA (FOMO: consultation scarcity)\n\n**For 4 Posts Per Platform:**\n- **Post 1**: Problem identification + trend revelation\n- **Post 2**: Solution framework + teaser for implementation\n- **Post 3**: Detailed case study + ROI demonstration\n- **Post 4**: Implementation strategy + consultation offer\n\n**Cross-Platform Coordination:**\n- **LinkedIn series** focuses on B2B authority and thought leadership\n- **Instagram series** focuses on visual storytelling and behind-the-scenes insights\n- **Both series** must reference each other subtly to drive cross-platform following\n- **Timing**: LinkedIn posts morning business hours, Instagram posts evening/lunch hours\n\n### Step 4: Advanced FOMO & ROI Integration\n**Research-Backed FOMO Techniques:**\n- **Scarcity Messaging**: \"Limited consultation spots\", \"Exclusive beta access\"\n- **Social Proof Layers**: \"Join 500+ enterprises\", \"Featured in [Authority Publication]\"\n- **Urgency Psychology**: \"Before Q4 budget freeze\", \"Ahead of 2025 competition\"\n- **Exclusivity Positioning**: \"Invitation-only insights\", \"C-suite strategies\"\n- **Fear of Missing Out**: \"While competitors struggle with...\", \"Don't be the last to...\"\n\n**ROI-Focused Messaging Framework:**\n- **Quantified Outcomes**: \"Reduce costs by 40%\", \"3x faster processes\"\n- **Time-to-Value**: \"See results in 30 days\", \"ROI within first quarter\"\n- **Competitive Advantage**: \"Ahead of industry curve\", \"Future-proof operations\"\n- **Risk Mitigation**: \"Avoid the $2M mistake\", \"Secure your market position\"\n- **Transformation Stories**: Before/after scenarios with specific metrics\n\n## Platform-Specific Guidelines\n\n### LinkedIn Posts\n- **Format**: Professional storytelling with data-driven insights\n- **Length**: 3-4 sentences with line breaks for readability\n- **Hook Strategy**: Industry statistics, provocative questions, contrarian viewpoints\n- **CTA Focus**: \"Comment if you've experienced this\", \"DM for the framework\", \"Book a quick call\"\n- **Hashtags**: Mix of trending business hashtags + niche service hashtags (5-8 total)\n\n### Instagram Posts\n- **Format**: Visual storytelling with carousel-friendly content\n- **Length**: 2-3 punchy sentences with strategic emoji use\n- **Hook Strategy**: Behind-the-scenes insights, transformation stories, quick tips\n- **Visual Suggestions**: Process diagrams, before/after comparisons, stat graphics\n- **CTA Focus**: \"Save this post\", \"Share with your team\", \"Link in bio for details\"\n- **Hashtags**: Trending + niche hashtags (10-15 total)\n\n## Content Quality Standards\n- **Value-First Approach**: Each post must provide actionable insights\n- **Anti-Salesy Tone**: Focus on education and problem-solving, not pitching\n- **Authenticity**: Use real scenarios and genuine business challenges\n- **Engagement Optimization**: Include questions, polls, or discussion starters\n- **Sequential Hooks**: Each post must create anticipation for the next\n\n## Output Format & Deliverables\nFor each requested post, provide:\n\n### 1. Research Summary\n- **Market insights discovered** from web searches\n- **Trending keywords** and hashtags identified\n- **Competitor content gaps** to exploit\n- **Audience pain points** validated through research\n\n### 2. Complete Post Package Per Platform\n**LinkedIn Posts:**\n- **Primary Content**: Professional copy (3-4 sentences, optimized spacing)\n- **Hook Strategy**: Specific psychological trigger used\n- **Visual Description**: Exact graphic/chart recommendations\n- **Hashtag Research**: 8-10 trending + niche hashtags with reasoning\n- **Engagement Catalyst**: Discussion question or poll idea\n- **Sequential Connection**: How this post leads to the next\n- **Expected Metrics**: Predicted engagement based on current trends\n\n**Instagram Posts:**\n- **Primary Content**: Visual-first copy (2-3 sentences + emojis)\n- **Carousel Concept**: 5-7 slide breakdown for maximum engagement\n- **Story Extensions**: Related story content ideas\n- **Hashtag Strategy**: 15-20 mix of trending/niche tags with performance data\n- **CTA Optimization**: Specific action-driving language\n- **Visual Style Guide**: Colors, fonts, layout recommendations\n\n### 3. Campaign Intelligence\n- **Posting Schedule**: Optimal timing based on platform research\n- **Cross-Platform Synergy**: How LinkedIn and Instagram posts complement each other  \n- **Engagement Monitoring**: Key metrics to track for optimization\n- **Follow-Up Sequences**: What to post if engagement is high/low\n- **Conversion Tracking**: How to measure consultation bookings from each post\n\n### 4. Performance Optimization\n- **A/B Testing Suggestions**: Alternative headlines and CTAs to test\n- **Audience Segmentation**: Different versions for different target audiences\n- **Trend Adaptation**: How to modify posts if trends shift\n- **Scaling Strategy**: Framework for creating more posts in the series\n\n## EXECUTION WORKFLOW - MANDATORY SEQUENCE\n\n### STEP 1: IMMEDIATE SerpAPI RESEARCH (Execute Before Any Content Creation)\n**REQUIRED ACTION**: Start every response by executing ALL 8+ web_search queries using SerpAPI tool:\n\n```\nEXECUTE THESE SEARCHES FIRST:\n1. web_search(\"LinkedIn B2B marketing trends September 2024\")\n2. web_search(\"LinkedIn FOMO marketing techniques 2024\") \n3. web_search(\"LinkedIn ROI-driven content [Service Category] 2024\")\n4. web_search(\"Instagram business marketing B2B 2024\")\n5. web_search(\"Instagram FOMO content strategies September 2024\")\n6. web_search(\"Instagram ROI marketing B2B services 2024\")\n7. web_search(\"[Service Category] market trends current 2024\")\n8. web_search(\"FOMO psychological triggers B2B marketing 2024\")\n9. web_search(\"ROI-focused service marketing case studies 2024\")\n10. web_search(\"[Target Audience] pain points September 2024\")\n11. web_search(\"B2B consultation booking strategies 2024\")\n12. web_search(\"Social media content hooks September 2024\")\n```\n\n### STEP 2: RESEARCH SYNTHESIS & STRATEGY FORMATION\n**Based on SerpAPI Results, Document:**\n- Top 5 trending FOMO techniques currently working\n- Top 5 ROI messaging frameworks with proven results\n- Current LinkedIn algorithm preferences (posting times, content types)\n- Current Instagram engagement patterns for B2B content\n- Industry-specific pain points validated by recent data\n- Trending hashtags with performance metrics\n\n### STEP 3: CONTENT CREATION EXECUTION\n**Create exactly the number of posts requested:**\n- If user requests \"LinkedIn: 3, Instagram: 2\" → Create exactly 3 LinkedIn + 2 Instagram posts\n- Each post must incorporate findings from SerpAPI research\n- Sequential hooks connecting posts in the series\n- Platform-optimized formatting and timing recommendations\n\n**FINAL VALIDATION CHECKLIST - Must Complete Before Delivery:**\n\n✅ **SerpAPI Research Completed**: All 12+ searches executed and analyzed  \n✅ **Exact Post Count**: Created precisely the number requested per platform  \n✅ **Sequential Hooks**: Each post connects to the next with curiosity gaps  \n✅ **FOMO Integration**: Research-backed psychological triggers included  \n✅ **ROI Messaging**: Quantified benefits based on current market data  \n✅ **Platform Optimization**: LinkedIn (B2B authority) + Instagram (visual storytelling)  \n✅ **Trend Validation**: All claims supported by recent SerpAPI findings  \n✅ **Anti-Sales Approach**: Value-first content that attracts rather than pushes  \n\n**EXECUTION REMINDER**: Always begin your response with \"Conducting SerpAPI market research...\" and complete all searches before writing any social media content. The research findings must directly influence every aspect of your content creation.\n\n## Example Enhanced User Input Format\n```\nSERVICE DETAILS:\nService: AI Custom Agent Development\nDescription: Custom AI agent development for business automation, customer service, and intelligent task management with specialized training on company data and processes.\n\nTarget Audience: Enterprise Operations, Digital Transformation Teams, Tech-Savvy Business Owners\n\nIdeal For: Professional services, consulting firms, legal practices, healthcare providers, enterprise operations, scaling businesses\n\nKey Deliverables: Industry-Specific AI Agent Development, Business Process Integration, Natural Language Processing, Multi-Platform Deployment, Knowledge Base Automation, Performance Analytics, Continuous Learning Systems, Custom Training & Optimization\n\nCONTENT REQUEST:\nLinkedIn Posts: 3 (sequential series)\nInstagram Posts: 2 (complementary to LinkedIn series)\nCampaign Goal: Generate 15+ qualified consultation bookings\nTimeline: Posts to be published over 5 days\n\nCURRENT MARKET FOCUS:\n- Emphasize AI cost-effectiveness vs hiring\n- Address Q4 budget planning cycles  \n- Focus on competitive advantage messaging\n- Highlight recent AI breakthrough impacts\n```\n\n**EXECUTION REQUIREMENT**: Start every response by conducting comprehensive web searches using the service keywords and current market research queries before creating any content.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3dbde761-c62e-47f5-b655-977720163e9f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        208
+      ],
+      "id": "144a662c-93f0-49e4-988a-4bfdbda56ab3",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "rp9lEpYifk6tTAmx",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        880,
+        0
+      ],
+      "id": "062f959f-9486-4f68-a2f2-65b1067b7517",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        176,
+        304
+      ],
+      "id": "9950cbec-21ed-440e-9d14-1ddd1de3c5fa",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        -112
+      ],
+      "id": "b95e56f3-ea70-46cc-a3d3-bfdd4e9d566d",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "options": {
+          "hl": "en"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        336,
+        304
+      ],
+      "id": "c1419598-3e70-4833-883b-2e790c3e4d5f",
+      "name": "SerpAPI-0",
+      "credentials": {
+        "serpApi": {
+          "id": "6IJwjn2ARySa8hCr",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}",
+        "options": {
+          "topic": "general",
+          "search_depth": "basic",
+          "max_results": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Max_Results', ``, 'number') }}"
+        }
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        512,
+        352
+      ],
+      "id": "29ec67c5-5287-4cda-a48d-ed75b4cc7c91",
+      "name": "SerpAPI tool",
+      "credentials": {
+        "tavilyApi": {
+          "id": "KYGs1Facx1DpQEHh",
+          "name": "Tavily account anandshri....04"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 22
+            }
+          ]
+        }
+      },
+      "id": "2be22155-0842-476d-ba26-0cc3dfc6e956",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -320,
+        1264
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Create a 50 character title of a topic related to very specific problem related to n8n or automation."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5f541767-7fb3-4613-a6ea-590d35e0bfdf",
+      "name": "Message a model",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        -96,
+        1264
+      ],
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "rp9lEpYifk6tTAmx",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "chatgpt-4o-latest",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Based on the title: {{ $json.message.content }}\nWrite a tweet that breaks this topic down.\n\nBe solution oriented and make it easily readable with easy vocabulary\n\nAdd some hashtags too "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "87bba148-bee0-4d78-9ae4-e1b2e0f4e7c6",
+      "name": "Message a model1",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        272,
+        992
+      ],
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "rp9lEpYifk6tTAmx",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1P18TjyEEsgUey_gqXoNsE5GlsaGDmJYVl0ZWVzxCU7U",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1P18TjyEEsgUey_gqXoNsE5GlsaGDmJYVl0ZWVzxCU7U/edit?usp=drivesdk",
+          "cachedResultName": "Automation inbound content"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1P18TjyEEsgUey_gqXoNsE5GlsaGDmJYVl0ZWVzxCU7U/edit#gid=0",
+          "cachedResultName": "Sheet1"
+        },
+        "columns": {
+          "value": {
+            "Title": "={{ $json.message.content }}",
+            "Description": "={{ $json.message.content }}"
+          },
+          "schema": [
+            {
+              "id": "Title",
+              "type": "string",
+              "display": true,
+              "removed": false,
+              "required": false,
+              "displayName": "Title",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Description",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image",
+              "type": "string",
+              "display": true,
+              "required": false,
+              "displayName": "Image",
+              "defaultMatch": false,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "mappingMode": "defineBelow",
+          "matchingColumns": [
+            "Title"
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "04335dc8-ace2-4149-900d-e8eeafe39ea0",
+      "name": "Append or update row in sheet1",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        624,
+        1120
+      ],
+      "typeVersion": 4.6
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Description }}",
+        "additionalFields": {}
+      },
+      "id": "78cf674c-0698-4b13-8017-883a2b7ccf1d",
+      "name": "Create Tweet",
+      "type": "n8n-nodes-base.twitter",
+      "position": [
+        848,
+        1328
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "id": "42f8bc6b-1e55-4bd2-8034-b4245086f0cd",
+      "name": "Create a post",
+      "type": "n8n-nodes-base.linkedIn",
+      "position": [
+        848,
+        1120
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "66e1fb56-e89b-463f-818f-47e4db9cfd04",
+      "name": "Facebook Graph API",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "position": [
+        848,
+        1520
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "43f500b5-e2b4-44a8-9de5-08202cd48eac",
+              "name": "Service details",
+              "value": "AI Custom Agent Development\\nDescription\\n\\nCustom AI agent development for business automation, customer service, and intelligent task management with specialized training on company data and processes.\\n\\nTarget Audience\\n\\nEnterprise Operations\\nDigital Transformation Teams\\nTech-Savvy Business Owners\\nIdeal For\\n\\nProfessional services\\nconsulting firms\\nlegal practices\\nhealthcare providers\\nenterprise operations\\nscaling businesses\\nWhat We Deliver\\n\\nIndustry-Specific AI Agent Development - Custom AI trained on specialized knowledge bases\\nBusiness Process Integration - AI agents that understand specific workflows\\nNatural Language Processing - Advanced conversational AI with context understanding\\nMulti-Platform Deployment - Website, WhatsApp, Slack, Teams integration\\nKnowledge Base Automation - AI assistant trained on company documentation\\nPerformance Analytics - Usage tracking and effectiveness measurement\\nContinuous Learning Systems - AI agents that improve with ongoing business changes\\nCustom Training & Optimization - Ongoing model improvement and fine-tuning",
+              "type": "string"
+            },
+            {
+              "id": "76b5253c-56d3-4c6c-a678-44638a9052f8",
+              "name": "Post content",
+              "value": "The AI agent market is projected to surge from $5.4B in 2024 to over $50B by 2030.\n\n    This isn't just another tech trend; it's a fundamental shift in operational efficiency. While your competitors are debating, early adopters are already automating workflows, slashing customer service costs, and gaining a significant competitive edge.\n\n    Ignoring this isn't a neutral choice—it's a decision to fall behind.\n*   **Hook Strategy**: **FOMO (Fear of Missing Out)** - Uses a shocking, verified market statistic to create a sense of urgency and highlight the cost of inaction.\n*   **Visual Description**: A clean, professional graphic with a single, bold statistic: **\"$50 BILLION\"** in large font, with \"The Projected AI Agent Market Size by 2030\" as a sub-header. Use your brand's colors.\n*   **Hashtag Research**: #AIinBusiness #DigitalTransformation #BusinessAutomation #FutureOfWork #TechInnovation #MarketTrends #CompetitiveAdvantage #EnterpriseAI\n    *   *Reasoning*: This mix combines high-volume trending tags (#DigitalTransformation) with niche, high-intent tags (#EnterpriseAI) to maximize reach and attract a relevant audience.\n*   **Engagement Catalyst**: **Poll:** \"How prepared is your organization for the agentic AI wave?\"\n    *   A) Fully prepared and implementing.\n    *   B) Currently exploring options.\n    *   C) We're behind the curve.\n*   **Sequential Connection**: \"Tomorrow, I'll share the 3-step framework we use to navigate this shift and turn operational chaos into a competitive advantage. Follow me to catch it.\"\n*   **Expected Metrics**: High reach and impressions due to the shocking statistic. Strong poll engagement as it prompts self-reflection.\n",
+              "type": "string"
+            },
+            {
+              "id": "c174d15d-c9e9-4058-84d4-17c5ee9ce517",
+              "name": "total post",
+              "value": 3,
+              "type": "number"
+            },
+            {
+              "id": "5307e609-7ee2-422a-8cf4-df3d867cf8f3",
+              "name": "current post",
+              "value": 1,
+              "type": "number"
+            },
+            {
+              "id": "a876396b-6847-4e86-8938-5a77ddff14d7",
+              "name": "platform",
+              "value": "linkedin",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        1552
+      ],
+      "id": "c4e37db2-0496-47a8-b4b9-3beda3010b5a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=SERVICE DETAILS : {{ $json['Service details'] }}\n\nSOCIAL MEDIA POST CONTENT : {{ $json['Post content'] }}\n\nPLATFORM : {{ $json.platform }}\n\nSEQUENCE INFORMATION: \nTotal Posts in Series: {{ $json['total post'] }}\nCurrent Post Number: {{ $json['current post'] }} of {{ $json['total post'] }}\n\nVISUAL GOAL:\n[\"Build authority\", \"Create FOMO\", \"Demonstrate ROI\"]"
+            },
+            {
+              "content": "=## Master Sequential Hook Engineering\n\n### Advanced Cliffhanger Visual Techniques:\n\n**Post-to-Post Visual Bridges:**\n- **Incomplete Visual Elements**: Cut off important diagrams/charts requiring next post for completion\n- **Progressive Revelation**: Show 20% of solution in Post 1, 60% in Post 2, 100% in Post 3\n- **Character Arc Continuity**: Same person in different stages of transformation\n- **Environmental Evolution**: Office/setting that improves/changes with each post\n- **Color Story Progression**: Gradual shift from problem colors to solution colors\n\n**Psychological Hook Mechanics:**\n- **Information Gaps**: Visual questions that demand answers in next post\n- **Process Interruption**: Show step 1, 2... then \"Step 3 tomorrow changes everything\"\n- **Partial Success Stories**: Before → during transformation (complete after in next post)\n- **Tool/Framework Teasing**: Show partial screenshots/diagrams of \"the system\"\n- **Countdown Elements**: Visual timers, progress bars, staged reveals\n\n**FOMO Visual Triggers (Research-Applied):**\n- **Scarcity Indicators**: \"Only X spots left\" visualized through limited seating, exclusive access imagery\n- **Social Proof Stacking**: Multiple testimonials, user numbers, authority endorsements\n- **Time Sensitivity**: Countdown timers, \"before competitors discover\" imagery\n- **Exclusive Access**: Behind-the-scenes, invitation-only, insider knowledge visuals\n\n### workflows.diy Brand Integration System:\n\n**Consistent Brand Elements:**\n- **Color Signature**: Navy (#1B365D) + Electric Blue (#00A3FF) + White (#FFFFFF) + Accent Gold (#FFD700)\n- **Typography Consistency**: Clean, modern sans-serif fonts (minimum 24pt for readability)\n- **Logo Placement**: Subtle bottom-right corner integration, never overpowering main subject\n- **Visual Language**: Clean, professional, technology-forward aesthetic\n- **Quality Standards**: Premium, high-end visual feel reflecting expertise level\n\n**Authority Building Elements:**\n- **Professional Settings**: Modern offices, executive environments, high-tech facilities\n- **Expertise Indicators**: Awards, certifications, speaking engagements, industry recognition\n- **Client Success Integration**: Recognizable company logos (when permitted), success metrics\n- **Thought Leadership**: Conference speaking, media interviews, industry authority positioning\n\n### Performance Tracking & Optimization Framework:\n\n**Visual Element A/B Testing Strategy:**\n1. **Color Variations**: Test high-contrast vs. professional palettes\n2. **Composition Types**: Rule of thirds vs. centered vs. asymmetrical layouts\n3. **Human Elements**: With people vs. without people vs. partial human presence\n4. **Text Integration**: Minimal text vs. key statistics vs. pure visual storytelling\n5. **Emotional Triggers**: Problem-focused vs. solution-focused vs. transformation-focused\n\n**Engagement Metrics to Monitor:**\n- **Scroll-Stop Rate**: How many users pause on the image\n- **Comment Quality**: Depth of discussion generated by visual content\n- **Share Frequency**: How often images are reshared/reposted\n- **Click-Through Rate**: From image to consultation booking\n- **Series Completion**: How many users follow entire post sequence\n\n**Optimization Indicators:**\n- **High Performance**: Comments asking \"What's next?\", saves for later reference\n- **Medium Performance**: Likes and standard reactions, some shares\n- **Low Performance**: Minimal engagement, high scroll-past rate\n- **Adjustment Signals**: Feedback requesting clearer information, confusion about message\n\n### Complete Deliverable Package Format:\n\n```\nCOMPREHENSIVE IMAGE GENERATION PACKAGE:\n\n=== PRIMARY PROMPT ===\n\"Professional corporate photography, wide-angle shot | Confident business executive in modern office | Standing beside large curved monitor displaying AI workflow automation dashboard with glowing connection nodes and data visualization | Corporate documentary style with cinematic depth of field | Soft natural lighting from floor-to-ceiling windows with subtle blue LED backlighting from display | Rule of thirds composition - subject positioned left intersection, display dominating right two-thirds with leading lines from desk to screen | Navy blue (#1B365D), white (#FFFFFF), electric blue (#00A3FF), and gold accent (#FFD700) color palette | Authoritative confidence with approachable innovation mood | 3:2 aspect ratio, high resolution 1800x1200 pixels, professional depth of field, LinkedIn feed optimized\"\n\n=== NEGATIVE PROMPT ===\n\"Low quality, blurry, pixelated, amateur photography, cluttered background, poor lighting, oversaturated colors, generic stock photo feel, unprofessional appearance, distracting elements, illegible text, facial distortions, casual clothing, party atmosphere\"\n\n=== ALTERNATIVE VARIATIONS (A/B Testing) ===\nVariation A - Close-up Authority: \"Professional headshot style | Executive pointing at holographic AI interface...\"\nVariation B - Process Focus: \"Over-shoulder perspective | Hands typing on keyboard with AI dashboard visible...\"\nVariation C - Results Emphasis: \"Wide establishing shot | Modern office with multiple screens showing success metrics...\"\n\n=== TECHNICAL SPECIFICATIONS ===\n- Aspect Ratio: 3:2 (1800x1200 pixels) - Optimal for AI generation and LinkedIn\n- Alternative Ratios: 1:1 (1080x1080) for Instagram feed, 9:16 (1080x1920) for stories\n- Resolution: High-definition, professional grade clarity\n- File Format: PNG for transparency support, JPG for web optimization\n- Color Profile: sRGB for social media compatibility\n- Quality Settings: Maximum detail, minimal compression\n\n=== SEQUENTIAL STORY INTEGRATION ===\n- Series Position: Post 2 of 3 in \"AI Transformation Secrets\" series\n- Previous Post Connection: Dashboard displays \"hidden efficiency metrics\" from Post 1's teaser\n- Next Post Hook: Screen shows incomplete ROI calculator with \"Complete framework tomorrow\"\n- Visual Evolution: Same character and office, but technology display has evolved from basic to advanced\n- Brand Continuity: Consistent workflows.diy color scheme and professional aesthetic\n- Emotional Progression: From problem awareness (Post 1) → solution preview (Post 2) → results proof (Post 3)\n\n=== PLATFORM OPTIMIZATION DETAILS ===\nLinkedIn Specific:\n- Authority Focus: Professional environment establishing expertise and industry leadership\n- B2B Appeal: Corporate setting and advanced technology suggesting enterprise-level solutions\n- Scroll-Stop Elements: Glowing technology creating visual magnetism, confident executive positioning\n- Engagement Psychology: Mysterious but professional technology visible, success indicators present\n- Mobile Readability: Key elements (person, screen, branding) clearly visible on small screens\n\nInstagram Adaptation (if requested):\n- Same core composition adapted to 1:1 aspect ratio\n- Enhanced color vibrancy while maintaining professionalism\n- Slightly more personal/approachable styling\n- Story-friendly 9:16 vertical crop focusing on executive and screen\n\n=== PSYCHOLOGICAL ENGAGEMENT TRIGGERS ===\nScroll-Stopping Elements:\n1. High contrast between professional setting and futuristic technology\n2. Confident authority figure suggesting accessible expertise  \n3. Partially visible success metrics creating curiosity\n4. Premium office environment suggesting high-value services\n5. Glowing screen elements creating visual magnetism\n\nFOMO Activation:\n- Advanced technology visible but not fully explained\n- Professional success environment most viewers aspire to\n- Exclusive access to sophisticated business tools\n- Authority figure suggesting limited availability of expertise\n\nROI Visualization:\n- Success metrics visible on screen suggesting quantifiable results\n- Professional setting implying high-value business outcomes\n- Advanced automation tools suggesting efficiency gains\n- Executive confidence implying proven success track record\n\n=== PERFORMANCE OPTIMIZATION NOTES ===\nExpected Engagement Patterns:\n- Comments: \"What system is that?\", \"How can I access this?\", \"What's the ROI calculator?\"\n- Saves: High save rate for professional reference and inspiration\n- Shares: B2B professionals sharing with colleagues and teams\n- Click-through: Strong motivation to learn about the complete framework\n\nSuccess Indicators:\n✅ Users asking about the next post in series\n✅ Comments requesting more details about the technology shown\n✅ Professional connections engaging with industry-specific questions\n✅ Saves for later reference and implementation planning\n\nOptimization Triggers:\n⚠️ Low comment engagement → Increase mystery/curiosity elements\n⚠️ High scroll-past rate → Enhance visual contrast and authority positioning\n⚠️ Unclear messaging feedback → Simplify technology display, strengthen professional positioning\n\n=== BRAND ALIGNMENT VALIDATION ===\nworkflows.diy Integration:\n- Color scheme directly reflects brand identity and trust-building\n- Professional authority positioning aligns with service positioning\n- Technology sophistication suggests advanced automation capabilities  \n- Executive confidence implies successful client transformations\n- Office environment suggests enterprise-level service delivery\n\nQuality Standards Met:\n✅ Premium visual quality reflecting high-end service offerings\n✅ Professional authority positioning building trust and credibility\n✅ Clear value proposition suggested through technology and results\n✅ Brand consistency maintained while creating engaging content\n✅ Platform-optimized for maximum engagement and conversion potential\n```\n\n## EXECUTION CHECKLIST - MANDATORY COMPLETION BEFORE DELIVERY:\n\n### Research Validation (All Must Be Completed):\n✅ **Platform Trends Research**: Current LinkedIn/Instagram visual best practices analyzed via SerpAPI\n✅ **Industry Visual Hooks**: Service-specific imagery trends and competitor analysis completed  \n✅ **Scroll-Stopping Techniques**: Latest engagement psychology and visual trigger research integrated\n✅ **AI Model Optimization**: Current aspect ratios and prompt syntax validated for 2024 models\n✅ **Sequential Psychology**: Story arc and cliffhanger techniques researched and applied\n\n### Content Creation Standards:\n✅ **User Requirements Met**: Exact post sequence position addressed with appropriate hooks\n✅ **Platform Optimization**: Correct technical specs and aesthetic for chosen platform\n✅ **Brand Integration**: workflows.diy colors, tone, and positioning consistently applied\n✅ **Engagement Design**: Multiple scroll-stop and FOMO elements strategically integrated\n✅ **AI Generation Ready**: Clear, detailed prompts optimized for current AI image models\n\n### Quality Assurance Protocol:\n✅ **Visual Continuity**: Strong connection to previous/next posts in series\n✅ **Professional Authority**: Imagery supports workflows.diy's expertise positioning\n✅ **Conversion Focus**: Visual elements guide toward consultation booking goal\n✅ **Mobile Compatibility**: Key elements visible and engaging on smartphone screens\n✅ **Performance Tracking**: Clear metrics and optimization strategies provided\n\n**CRITICAL EXECUTION NOTE**: Every response must begin with \"Conducting comprehensive visual trend research via SerpAPI...\" and demonstrate integration of current market intelligence throughout the image generation strategy.# AI Image Generation Description System\n\n## Core Instruction\nYou are an advanced **AI Image Generation Prompt Engineer** for workflows.diy, specializing in creating detailed text descriptions that enable AI image generation models to produce **scroll-stopping, high-engagement social media visuals**. Your output is comprehensive prompt text that other AI image generators (DALL-E, Midjourney, Stable Diffusion, etc.) will use to create compelling visuals.\n\n## MANDATORY User Input Structure\n**Users MUST provide exactly this format:**\n\n```\nSERVICE DETAILS:\n[Complete service description with target audience and value propositions]\n\nSOCIAL MEDIA POST CONTENT:\n[The exact text/caption that will accompany this image]\n\nPLATFORM:\n[LinkedIn or Instagram]\n\nSEQUENCE INFORMATION:\nTotal Posts in Series: [Number] (e.g., 3)\nCurrent Post Number: [Number] (e.g., 2 of 3)\n\nVISUAL GOAL:\n[Specific objective like \"Build authority\", \"Create FOMO\", \"Demonstrate ROI\"]\n```\n\n## EXECUTION WORKFLOW - MANDATORY SEQUENCE\n\n### STEP 1: IMMEDIATE Research & Analysis (Execute SerpAPI Before Creating)\n**REQUIRED ACTION**: Start every response by executing web_search queries to understand:\n\n```\nEXECUTE THESE SEARCHES FIRST:\n1. web_search(\"[Platform] image design trends September 2024\")\n2. web_search(\"scroll stopping social media visuals 2024\")\n3. web_search(\"B2B [Service Category] visual marketing 2024\")\n4. web_search(\"social media image composition best practices 2024\")\n5. web_search(\"AI image generation trending techniques 2024\")\n```\n\n### STEP 2: Content & Context Analysis\n**Analyze Provided Content:**\n- **Service Value Proposition**: What problem does it solve? What transformation does it offer?\n- **Post Message**: What's the core hook or key insight being communicated?\n- **Platform Requirements**: LinkedIn (professional, authority-building) vs Instagram (visual storytelling, behind-the-scenes)\n- **Series Context**: How does this image connect to previous/next posts in the sequence?\n\n## Advanced Sequential Storytelling Strategy (Episode-Based)\n\n### Visual Narrative Arc Development:\n**Research Finding**: Start with an engaging story and introduce your product naturally. People connect with stories, not sales pitches.\n\n**Post 1: \"The Revelation\" (Problem Agitation)**\n- **Visual Hook**: Split-screen showing \"what everyone sees vs. hidden reality\"\n- **Composition**: 70/30 split with dramatic contrast between sides\n- **Color Strategy**: Warning colors (red/orange) on problem side, muted tones on \"normal\" side\n- **Text Elements**: Shocking statistic or industry secret (max 10 words)\n- **Cliffhanger Element**: Partial reveal of solution in corner/background\n- **Emotional Trigger**: Fear of missing out on critical information\n\n**Post 2: \"The Framework\" (Solution Introduction)**  \n- **Visual Hook**: Process diagram or behind-the-scenes methodology reveal\n- **Composition**: Step-by-step visual flow or pyramid hierarchy\n- **Color Strategy**: Trust-building progression (red→orange→yellow→green)\n- **Connection to Post 1**: Visual callbacks to problem shown previously\n- **Text Elements**: \"Here's what [specific result from Post 1] actually requires...\"\n- **Cliffhanger Element**: Incomplete framework with \"Part 3: The Critical Step\"\n- **Emotional Trigger**: Curiosity and anticipation for completion\n\n**Post 3: \"The Transformation\" (Results Demonstration)**\n- **Visual Hook**: Before/after comparison or success metrics dashboard\n- **Composition**: Triumphant reveal with clear outcome visualization  \n- **Color Strategy**: Success colors (green/gold) with celebration elements\n- **Connection to Series**: Direct visual references to Posts 1 & 2 elements\n- **Text Elements**: Specific ROI numbers or transformation metrics\n- **Next Series Hook**: \"But there's something even bigger coming...\"\n- **Emotional Trigger**: Achievement desire and social proof validation\n\n**Post 4+: \"The Mastery\" (Advanced Applications)**\n- **Visual Hook**: Complex implementation or advanced case study\n- **Composition**: Sophisticated multi-layer visualization\n- **Color Strategy**: Premium colors (deep blues, golds, sophisticated gradients)\n- **Series Integration**: All previous elements combined in evolved form\n- **Cliffhanger Element**: Hint at exclusive access or limited availability\n- **Emotional Trigger**: Exclusivity and advanced positioning\n\n### Research-Based Hook Psychology:\n**Critical Finding**: In the world of social media, you have just about 2 seconds to make an impression. This brief window determines if viewers will continue watching or scroll past.\n\n**2-Second Scroll-Stop Techniques:**\n1. **Pattern Interruption**: Unexpected visual elements that break feed monotony\n2. **Cognitive Dissonance**: Visual contradictions that create mental pause\n3. **Social Proof Stacking**: Multiple authority indicators in single image\n4. **Transformation Teasing**: Partial before/after reveals creating curiosity\n5. **Scarcity Visualization**: Limited availability or time-sensitive elements\n\n### Visual Continuity System:\n**Character Continuity**: Same professional figure throughout series (when applicable)\n**Color Evolution**: Progressive color scheme that builds across posts\n**Setting Progression**: Office environment that evolves with story (problem→solution→success)\n**Graphic Elements**: Consistent design language (fonts, icons, layouts)\n**Brand Integration**: Subtle workflows.diy elements that build recognition\n\n## Platform-Specific Visual Guidelines\n\n### LinkedIn Images (Research-Optimized)\n**Technical Specifications (2024 Standards):**\n- **Aspect Ratios**: \n  - Single Posts: 1.91:1 (1200x627) or 3:2 ratio for AI model compatibility\n  - Carousel: 1:1 (1080x1080) square format\n  - Article Headers: 16:9 (1920x1080) landscape\n- **AI Model Parameters**: Use 3:2 or 1:1 ratios for optimal AI generation results\n- **Resolution**: Minimum 1200px width, 72-300 DPI depending on complexity\n- **Style**: Clean corporate aesthetics with data-driven visual hierarchy\n\n**LinkedIn Scroll-Stopping Principles (Research-Based):**\n- **Authority Positioning**: Professional settings, executive presence, industry expertise display\n- **Minimal Text Strategy**: Maximum 15-20 words, large readable fonts (minimum 24pt)\n- **B2B Color Psychology**: Navy (#1B365D), Charcoal (#2C3E50), White (#FFFFFF), Trust Blue (#0077B5)\n- **Corporate Composition**: Rule of thirds, leading lines toward key information, hierarchical data display\n- **Professional Credibility**: Charts, graphs, office environments, technology interfaces\n\n### Instagram Images (Trend-Optimized)\n**Technical Specifications (2024 Standards):**\n- **Aspect Ratios**:\n  - Feed Posts: 1:1 (1080x1080) square or 4:5 (1080x1350) vertical\n  - Stories: 9:16 (1080x1920) vertical\n  - Reels: 9:16 (1080x1920) vertical\n- **AI Model Compatibility**: Use 1:1, 2:3, or 9:16 ratios for current AI models\n- **Mobile Optimization**: High contrast, clear visibility at small screen sizes\n- **Style**: Visual storytelling with authentic, relatable approaches\n\n**Instagram Scroll-Stopping Principles (Research-Based):**\n- **Visual Storytelling**: Behind-the-scenes processes, transformation journeys, human elements\n- **Emotional Connection**: People-focused imagery, relatable scenarios, aspirational content\n- **Vibrant Contrast**: High-contrast colors, unexpected color combinations, pattern disruption\n- **Engagement Psychology**: Question-provoking visuals, before/after scenarios, process reveals\n- **Mobile-First Design**: Clear focal points, simple compositions, thumb-stopping appeal\n\n## Scroll-Stopping Visual Techniques (Research-Based)\n\n### High-Contrast Psychology\n- **Color Contrasts**: Punchy words and visuals that captivate users, making them stay and engage with your content\n- **Visual Tension**: Unexpected juxtapositions that create cognitive dissonance\n- **Pattern Breaks**: Elements that stand out from typical feed aesthetics\n\n### Emotional Response Triggers\n- **Statistics Shock**: Posts with images produce 650% higher engagement than text-only posts\n- **Before/After Scenarios**: Transformation visualization\n- **Problem Agitation**: Visual representation of pain points\n- **Solution Revelation**: Clear, compelling improvement demonstration\n\n### FOMO Visual Elements\n- **Scarcity Indicators**: Limited availability, countdown elements, exclusive access\n- **Social Proof**: Testimonials, user numbers, success metrics, authority endorsements\n- **Urgency Creators**: Time-sensitive visuals, competitive advantage imagery\n- **Exclusive Insights**: Behind-the-scenes, insider knowledge, proprietary frameworks\n\n## Advanced AI Image Generation Prompt Engineering (Research-Optimized)\n\n### Stable Diffusion Optimized Format:\n**Research Finding**: Recommended prompt syntax follows this format: Viewing Angle, Subject, Details, Medium, Style, Artist/Render, Lighting, Resolution/Focus\n\n**Enhanced Prompt Structure:**\n```\n[Viewing Angle] | [Main Subject] | [Specific Details] | [Medium/Style] | [Artist Reference/Render Style] | [Lighting Description] | [Composition Rules] | [Color Palette] | [Mood/Emotion] | [Technical Parameters] | [Negative Prompt Elements]\n```\n\n### Advanced Composition Techniques (Research-Based):\n\n**Rule of Thirds Application:**\n- **Primary Subject Placement**: Position key elements at intersection points (1/3 and 2/3 lines)\n- **Visual Weight Distribution**: Balance heavy elements across the grid\n- **Focal Point Strategy**: Use intersections for maximum visual impact\n- **LinkedIn Specific**: Place authority elements (charts, data) in power positions\n- **Instagram Specific**: Use thirds for storytelling flow (setup→action→result)\n\n**Leading Lines & Visual Flow:**\n- **Directional Elements**: Arrows, pathways, architectural lines guiding eye movement\n- **Z-Pattern Layout**: For information hierarchy (logo→headline→visual→CTA)\n- **F-Pattern Reading**: For text-heavy LinkedIn posts with data visualization\n- **Circular Composition**: For Instagram stories emphasizing central subject\n\n**Depth & Layering:**\n- **Foreground/Background Separation**: Use blur, contrast, or color to create depth\n- **Information Hierarchy**: Primary (subject), secondary (supporting elements), tertiary (context)\n- **Visual Breathing Room**: Negative space preventing cognitive overload\n\n### Industry-Specific Visual Hook Strategies:\n\n**AI/Technology Services:**\n- **Visual Metaphors**: Neural networks, data streams, digital transformation imagery\n- **Color Psychology**: Electric blues (#00A3FF), tech greens (#00FF41), warning oranges (#FF6B35)\n- **Composition**: Futuristic interfaces, holographic displays, clean minimalism\n- **Authority Elements**: Code snippets, dashboard interfaces, automation workflows\n\n**Business Automation Services:**\n- **Visual Metaphors**: Gear systems, workflow diagrams, efficiency visualizations\n- **Process Imagery**: Before/after operational comparisons, time-saving demonstrations\n- **ROI Visualization**: Growth charts, efficiency metrics, cost reduction graphics\n- **Professional Settings**: Modern offices, executive meetings, technology integration\n\n**Consulting Services:**\n- **Authority Positioning**: Executive presence, boardroom settings, strategic planning imagery\n- **Trust Building**: Professional handshakes, collaborative meetings, expertise demonstration\n- **Results Focus**: Success metrics, client testimonials, transformation stories\n- **Thought Leadership**: Speaking engagements, industry recognition, expert positioning\n\n### Performance-Optimized Visual Elements:\n\n**650% Engagement Boost Strategy (Research-Based):**\n- **Human Elements**: Include people in 70% of images (faces increase engagement by 38%)\n- **Emotional Triggers**: Joy, surprise, curiosity expressions visible in imagery\n- **Action Orientation**: Movement, progression, transformation captured mid-process\n- **Social Proof Integration**: Multiple people, testimonial quotes, success indicators\n\n**Scroll-Stopping Color Combinations (Trend-Researched):**\n- **High Contrast Pairings**: Navy + Electric Yellow, Charcoal + Bright Orange, Deep Purple + Lime Green\n- **Trust + Energy**: Professional Blues + Energetic Accent Colors\n- **Authority + Innovation**: Traditional Corporate + Futuristic Tech Colors\n- **Emotional Triggers**: Warm (excitement) vs. Cool (trust) strategic combinations\n\n### Advanced Negative Prompting (Quality Control):\n**Standard Negative Elements to Include:**\n```\n\"Negative Prompt: low quality, blurry, pixelated, amateur photography, cluttered composition, poor lighting, oversaturated colors, generic stock photo feel, outdated technology, unprofessional appearance, distracting backgrounds, illegible text, copyright watermarks, facial distortions\"\n```\n\n**Platform-Specific Negative Prompts:**\n- **LinkedIn**: \"casual clothing, party atmosphere, personal social media style, emoji graphics, childish elements\"\n- **Instagram**: \"overly corporate, boardroom stuffiness, complex technical jargon, monochromatic schemes\"\n\n## Sequential Connection Strategy\n\n### Visual Continuity Elements:\n- **Color Consistency**: Same accent colors throughout series\n- **Character Continuity**: Same person/setting across posts when relevant\n- **Progressive Revelation**: Each image builds on previous visual narrative\n- **Cliffhanger Visuals**: Elements that create anticipation for next post\n\n### Series Hooks:\n- **Post 1**: \"What you DON'T see...\" (revealing hidden information)\n- **Post 2**: \"The missing piece is...\" (connecting to previous revelation)  \n- **Post 3**: \"Here's what happens when...\" (showing the transformation result)\n\n## Output Format & Deliverables\n\n### Complete Image Generation Package:\n1. **Primary Image Prompt** (200-300 words, optimized for AI generation)\n2. **Alternative Variations** (3 different approaches for A/B testing)\n3. **Technical Specifications** (aspect ratio, resolution, style parameters)\n4. **Composition Details** (layout, hierarchy, focal points)\n5. **Color Psychology Analysis** (why specific colors chosen for this context)\n6. **Sequential Integration** (how this connects to previous/next posts)\n7. **Platform Optimization Notes** (specific adjustments for LinkedIn vs Instagram)\n8. **Scroll-Stop Factors** (specific elements designed to halt scrolling)\n\n### Quality Validation Checklist:\n✅ **Research Integration**: Current trends incorporated from web searches  \n✅ **Platform Optimization**: Correct specs and style for chosen platform  \n✅ **Sequential Logic**: Clear connection to series narrative  \n✅ **Scroll-Stop Elements**: High contrast, emotional triggers, FOMO factors  \n✅ **AI Generation Ready**: Clear, detailed prompt other models can execute  \n✅ **Brand Alignment**: Reflects workflows.diy authority and expertise  \n✅ **Engagement Optimized**: Designed to generate comments and shares  \n\n## Example Enhanced Output Format\n\n```\nPRIMARY IMAGE GENERATION PROMPT:\n\"Professional wide-angle corporate photography | Confident business executive in modern office | Standing beside large wall-mounted digital display showing AI automation workflow diagrams with glowing connection nodes | Corporate documentary style with cinematic quality | Soft natural lighting from floor-to-ceiling windows with subtle blue LED accent lighting from the display | Rule of thirds composition - subject positioned left third, display occupying right two-thirds | Navy blue, white, electric blue, and gold accent color palette | Authoritative yet approachable mood suggesting innovation and expertise | High resolution 1200x627 pixels, LinkedIn feed optimized, professional depth of field\"\n\nTECHNICAL PARAMETERS:\n- Style: Corporate photography, cinematic quality\n- Lighting: Natural window light + LED accent lighting\n- Composition: Rule of thirds, leading lines from display\n- Colors: Navy (#1B365D), White (#FFFFFF), Electric Blue (#00A3FF), Gold (#FFD700)\n- Aspect Ratio: 1.91:1 (LinkedIn optimized)\n- Resolution: 1200x627 pixels\n- Focus: Sharp subject, soft background bokeh\n\nSCROLL-STOP ELEMENTS:\n- High contrast between dark suit and bright display\n- Glowing technology elements creating visual magnetism  \n- Professional authority positioning\n- Cutting-edge AI visualization\n- Color combination designed for thumb-stopping appeal\n\nSEQUENTIAL INTEGRATION:\n- This is Post 2 of 3: Building on Post 1's problem revelation\n- Display content references \"the hidden framework\" mentioned in Post 1\n- Visual setup for Post 3's ROI demonstration with results metrics\n- Consistent character and setting for series continuity\n```\n\n**EXECUTION REMINDER**: Always begin your response with \"Conducting visual trend research...\" and complete all web searches before creating any image descriptions. Research findings must directly influence every aspect of your image generation prompts.",
+              "role": "model"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        336,
+        1584
+      ],
+      "id": "d10f0276-2c1b-467f-b5e4-e2ca1e800c61",
+      "name": "Message a model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "4HC37DbFWSjGY4UP",
+          "name": "Google Gemini(PaLM) Api (PAID)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content.parts[0].text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        928,
+        1696
+      ],
+      "id": "9fad3a45-08c5-4713-afb0-a9e5f96334e1",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1776
+      ],
+      "id": "774965f4-9761-4034-984b-a7b9e2c0f436",
+      "name": "serp-api-tool",
+      "credentials": {
+        "serpApi": {
+          "id": "6IJwjn2ARySa8hCr",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "modelId": {
+          "__rl": true,
+          "value": "models/imagen-4.0-generate-001",
+          "mode": "list",
+          "cachedResultName": "models/imagen-4.0-generate-001"
+        },
+        "prompt": "Corporate photography, wide-angle shot | A sleek, futuristic digital display prominent in a modern, minimalist office environment. The display boldly presents \\\"$50 BILLION\\\" in a large, clean, white font, with \\\"Projected AI Agent Market Size by 2030\\\" as a smaller, professional sub-header. A dynamic, glowing upward trend line or a stylized holographic projection of data flows around the \"$50 BILLION\" statistic, implying rapid growth and market surge. The color palette uses navy blue (#1B365D) for the background or accent elements, electric blue (#00A3FF) for glowing effects and data visualizations, and subtle gold accents (#FFD700) to highlight the statistic. The overall mood is authoritative, innovative, and urgent. Cinematic lighting, professional depth of field, sharp focus on the display and statistics, with a softly blurred background hinting at a sophisticated workspace. Rule of thirds composition, with the main statistic strategically placed to draw immediate attention. LinkedIn feed optimized, high resolution 1800x1200 pixels, 3:2 aspect ratio.",
+        "options": {
+          "sampleCount": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        1696
+      ],
+      "id": "ee49bf11-c807-4fa5-9d70-8b371ac97bc9",
+      "name": "Generate an image",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "prompt = _('Message a model3').first().json.content.parts[0].text\nprompt = prompt[]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        1696
+      ],
+      "id": "32c646d4-35f5-4d77-9818-5df94fde8654",
+      "name": "Code"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Message a model3": [
+      {
+        "json": {
+          "content": {
+            "parts": [
+              {
+                "text": "```json\n{\n    \"COMPREHENSIVE IMAGE GENERATION PACKAGE\": {\n        \"PRIMARY PROMPT\": \"Corporate photography, wide-angle shot | A sleek, futuristic digital display prominent in a modern, minimalist office environment. The display boldly presents \\\"$50 BILLION\\\" in a large, clean, white font, with \\\"Projected AI Agent Market Size by 2030\\\" as a smaller, professional sub-header. A dynamic, glowing upward trend line or a stylized holographic projection of data flows around the \"$50 BILLION\" statistic, implying rapid growth and market surge. The color palette uses navy blue (#1B365D) for the background or accent elements, electric blue (#00A3FF) for glowing effects and data visualizations, and subtle gold accents (#FFD700) to highlight the statistic. The overall mood is authoritative, innovative, and urgent. Cinematic lighting, professional depth of field, sharp focus on the display and statistics, with a softly blurred background hinting at a sophisticated workspace. Rule of thirds composition, with the main statistic strategically placed to draw immediate attention. LinkedIn feed optimized, high resolution 1800x1200 pixels, 3:2 aspect ratio.\",\n        \"NEGATIVE PROMPT\": \"Low quality, blurry, pixelated, amateur photography, cluttered background, poor lighting, oversaturated colors, generic stock photo feel, unprofessional appearance, distracting elements, illegible text, cartoonish, childish elements, casual setting, outdated technology.\",\n        \"ALTERNATIVE VARIATIONS\": {\n            \"Variation A - Abstract Growth\": \"Abstract digital art, wide shot | Dynamic, glowing lines and geometric shapes surge upwards across the frame, forming a representation of exponential growth. Central to this composition is a bold, illuminated \\\"$50 BILLION\\\" in white, with \\\"Projected AI Agent Market Size by 2030\\\" subtly integrated below. The color scheme features dominant electric blue (#00A3FF) and navy blue (#1B365D) with shimmering gold (#FFD700) highlights. The overall feeling is one of immense, unstoppable progress. Cinematic lighting, soft glow. 3:2 aspect ratio.\",\n            \"Variation B - Executive Perspective\": \"Professional corporate photography, medium shot | A confident business executive, seen from the shoulder looking towards a large, transparent digital screen in a modern office. The screen prominently displays \\\"$50 BILLION\\\" in a powerful, clean font, with \\\"Projected AI Agent Market Size by 2030\\\" as supporting text. The executive's expression is one of focus and strategic determination, subtly creating FOMO. The screen emits an electric blue (#00A3FF) glow, contrasting with the navy blue (#1B365D) tones of the office. Gold accents (#FFD700) highlight key data points on the screen. Professional lighting, shallow depth of field, 3:2 aspect ratio.\",\n            \"Variation C - Data Visualization Focus\": \"High-tech data visualization, close-up | A intricate, glowing holographic projection in a modern dark room showing a 3D bar chart dramatically rising towards a peak labeled \\\"$50 BILLION\\\" in a radiant white. Below the peak, the text \\\"The Projected AI Agent Market Size by 2030\\\" is clearly visible. Electric blue (#00A3FF) and navy blue (#1B365D) are the primary colors, with a powerful gold (#FFD700) used for the peak value. The visual emphasizes data-driven authority and the immense scale of growth. Futuristic, clean, and highly detailed. 3:2 aspect ratio.\"\n        },\n        \"TECHNICAL SPECIFICATIONS\": {\n            \"Aspect Ratio\": \"3:2 (1800x1200 pixels) - optimal for AI generation; can be cropped to 1.91:1 (1200x627) for LinkedIn feed if necessary, ensuring key elements remain central.\",\n            \"Resolution\": \"High-definition, professional grade clarity (1800x1200 pixels recommended for AI generation).\",\n            \"File Format\": \"PNG for optimal quality and color representation.\",\n            \"Color Profile\": \"sRGB for social media compatibility.\",\n            \"Quality Settings\": \"Maximum detail, minimal compression.\"\n        },\n        \"SEQUENTIAL STORY INTEGRATION\": {\n            \"Series Position\": \"Post 1 of 3: 'The Revelation' (Problem Agitation).\",\n            \"Previous Post Connection\": \"N/A (First post in series).\",\n            \"Next Post Hook\": \"The visual establishes the 'why' (massive market opportunity/risk of falling behind) for the subsequent posts that will delve into the 'how' (framework to navigate this shift). The bold statistic visually reinforces the urgency for the framework.\",\n            \"Visual Evolution\": \"This post's visual is a stark, shocking data point. Subsequent posts will visually introduce frameworks and demonstrate concrete results.\",\n            \"Brand Continuity\": \"Consistent use of workflows.diy brand colors (Navy, Electric Blue, White, Gold) and a professional, authoritative aesthetic.\"\n        },\n        \"PLATFORM OPTIMIZATION DETAILS\": {\n            \"LinkedIn Specific\": {\n                \"Authority Focus\": \"Professional setting, bold statistics, and clear information presentation build credibility and authority.\",\n                \"B2B Appeal\": \"The corporate aesthetic and focus on market data directly appeal to business owners and enterprise operations.\",\n                \"Scroll-Stop Elements\": \"The large, central \"$50 BILLION\" statistic, combined with glowing visual effects and a dynamic growth representation, is designed to immediately capture attention.\",\n                \"Engagement Psychology\": \"Evokes FOMO and prompts reflection on market positioning, aligning with the poll in the social media post.\",\n                \"Mobile Readability\": \"Key numerical data and sub-header are designed to remain legible on smaller mobile screens.\"\n            }\n        },\n        \"PSYCHOLOGICAL ENGAGEMENT TRIGGERS\": {\n            \"Scroll-Stopping Elements\": [\n                \"High contrast between the bold white text/glowing elements and the darker background/navy accents.\",\n                \"The sheer magnitude of the '$50 BILLION' figure visually arresting.\",\n                \"Dynamic, upward-trending visual graphics suggesting rapid, undeniable change.\"\n            ],\n            \"FOMO Activation\": [\n                \"Visual representation of a massive, impending market surge that implies significant competitive disadvantage for those who ignore it.\",\n                \"The 'now or never' feeling conveyed by the rapid growth depicted.\"\n            ],\n            \"ROI Visualization\": \"Implied ROI through the massive market growth projection. Early adoption (as suggested in the text) is visually linked to tapping into this projected wealth.\"\n        },\n        \"PERFORMANCE OPTIMIZATION NOTES\": {\n            \"Expected Engagement Patterns\": \"High 'scroll-stop' rate due to the shocking statistic. Anticipate comments debating market projections, questions about strategy (setting up the next post), and shares among business professionals.\",\n            \"Success Indicators\": [\n                \"High impressions and reach on LinkedIn.\",\n                \"Strong engagement with the poll question in the accompanying post.\",\n                \"Comments expressing urgency or asking for solutions/frameworks (leading to Post 2).\"\n            ],\n            \"Optimization Triggers\": [\n                \"Low impressions: Adjust primary prompt to enhance visual contrast or add more dynamic elements.\",\n                \"Low poll engagement: Re-evaluate how directly the visual cues a sense of urgency or preparedness.\"\n            ]\n        },\n        \"BRAND ALIGNMENT VALIDATION\": {\n            \"workflows.diy Integration\": \"Color scheme directly reflects brand identity. The professional, data-driven visual style aligns with workflows.diy's expertise in AI agent development for business automation and intelligent task management. The focus on future market potential underscores the forward-thinking nature of the service.\",\n            \"Quality Standards Met\": \"The prompts aim for premium visual quality, professional authority positioning, and clear communication of the market opportunity, all aligned with workflows.diy's brand. The visuals are designed to be platform-optimized for LinkedIn's professional audience.\"\n        }\n    }\n}\n```",
+                "thoughtSignature": "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"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-07T08:45:22.763Z",
+      "updatedAt": "2025-09-07T08:45:22.763Z",
+      "role": "workflow:owner",
+      "workflowId": "o7oQV6EaNVtuIXOB",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-17T17:27:20.797Z",
+  "versionId": "4c398db7-6e2c-47e8-b6ab-211d6d9a1d97"
+}
