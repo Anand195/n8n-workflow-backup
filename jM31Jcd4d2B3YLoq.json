@@ -1,0 +1,621 @@
+{
+  "active": false,
+  "connections": {
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Assign mandatiry sitemap fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "is new?": {
+      "main": [
+        [
+          {
+            "node": "URL Updated",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "URL Updated": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check status": {
+      "main": [
+        [
+          {
+            "node": "is new?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "URL Updated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get sitemap.xml": {
+      "main": [
+        [
+          {
+            "node": "Convert sitemap to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Check status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get sitemap.xml",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert sitemap to JSON": {
+      "main": [
+        [
+          {
+            "node": "Get content-specific sitemaps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Force urlset.url to array": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "convert page data to JSON": {
+      "main": [
+        [
+          {
+            "node": "Force urlset.url to array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get content of each sitemap": {
+      "main": [
+        [
+          {
+            "node": "convert page data to JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get content-specific sitemaps": {
+      "main": [
+        [
+          {
+            "node": "Get content of each sitemap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Get sitemap.xml",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assign mandatiry sitemap fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-29T14:13:28.841Z",
+  "id": "jM31Jcd4d2B3YLoq",
+  "isArchived": false,
+  "meta": null,
+  "name": "site to google ranking",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2b9ff31a-a6bc-4014-aeca-3d41086ee517",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -1960,
+        280
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "urlset.url",
+        "options": {}
+      },
+      "id": "be4652dd-70dc-4ae5-8135-ae03af5fe071",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -560,
+        160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "=https://indexing.googleapis.com/v3/urlNotifications/metadata?url={{ encodeURIComponent($json.loc) }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleOAuth2Api",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "0749d70e-a0d7-4790-96a3-72e057864409",
+      "name": "Check status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        500,
+        200
+      ],
+      "retryOnFail": false,
+      "typeVersion": 4.1,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5efcbe71-6a24-42a2-9ef0-4aaf2ba6674c",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        300,
+        160
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.min(1.5,0.3+3*Math.random()).toFixed(2) }}",
+        "unit": "seconds"
+      },
+      "id": "2f75925a-fc92-4001-b48f-684a3657afe2",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1040,
+        200
+      ],
+      "webhookId": "44364241-e54b-4b44-aaa1-0d8121a7f497",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://indexing.googleapis.com/v3/urlNotifications:publish",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleOAuth2Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $('Loop Over Items').item.json.loc }}"
+            },
+            {
+              "name": "type",
+              "value": "URL_UPDATED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "53632306-79bf-474e-86bf-ffecc1d86259",
+      "name": "URL Updated",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        800,
+        200
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 2,
+              "triggerAtMinute": 5
+            }
+          ]
+        }
+      },
+      "id": "351da5b6-7545-40dc-a85c-d80b731c7a10",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -1960,
+        80
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "content": "## Collect list of URLs\n\nThis part extracts all pages from all sitemaps and sorts by the last modified date `lastmod` (from newest to oldest)",
+        "height": 340.39627039627067,
+        "width": 851.3475816949383
+      },
+      "id": "3be1f8c9-45c7-44ac-a4e5-966953c3cafe",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1120,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c8566fc4-57cf-4272-841e-014bb354a37d",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              },
+              "leftValue": "={{ $('Loop Over Items').item.json.lastmod }}",
+              "rightValue": "={{ $json.body.latestUpdate.notifyTime }}"
+            }
+          ]
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "0c95befa-3288-44c1-a1e6-4b9240d89397",
+      "name": "is new?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        660,
+        80
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "## Check URL metadata and update, if:\n* Google returns error (404 error means that this URL was not previously added)\n* Date of article update is after the date of last request to re-index",
+        "height": 431.1089918072487,
+        "width": 504.2424242424241
+      },
+      "id": "3e257f38-7b5e-48c5-9fd5-a9c56b3d6dcb",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        460,
+        -80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Get sitemap.xml\nVarious CMS systems often have multiple sitemaps for different content (posts, tags, pages etc). Need to fetch all sitemaps first and then extract all pages from all sitemaps.\n### Remember to update the real sitemap URL!",
+        "height": 335.72259887005646,
+        "width": 515.8058994999984
+      },
+      "id": "2d059d24-5304-4622-abce-6b7dc622806f",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1680,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Feel free to adapt this part depending on your website CMS\n",
+        "height": 453.3292476478371,
+        "width": 1458.468937875752,
+        "color": 6
+      },
+      "id": "f0d16743-1673-436f-b0e3-e7d13a173d01",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1700,
+        -80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "sitemapindex.sitemap",
+        "options": {}
+      },
+      "id": "8262c0cb-7976-4261-b09e-c112c8c296c6",
+      "name": "Get content-specific sitemaps",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -1300,
+        160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f0d1e00e-c08e-4f86-98ab-8a34e81a865a",
+      "name": "Convert sitemap to JSON",
+      "type": "n8n-nodes-base.xml",
+      "position": [
+        -1480,
+        160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8d16114b-1d1a-4522-a550-6c799a44538a",
+              "name": "=urlset.url",
+              "type": "array",
+              "value": "={{ $json.urlset.url[0] ? $json.urlset.url : [$json.urlset.url] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "479db3bf-29a5-45af-8ad3-f988ea7888d6",
+      "name": "Force urlset.url to array",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -720,
+        160
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "content": "## Update the `lastmod` and `loc` fields\nThese are pre-defined fields according to [the XML schema for the Sitemap protocol](https://www.sitemaps.org/protocol.html).\n\nIf your CMS system has different field names, please rename them here:\n* the last modified field `lastmod`\n* URL of the page in `loc` field",
+        "height": 451.39712985292624,
+        "width": 459.2224448897797,
+        "color": 3
+      },
+      "id": "91f9e09f-4dd3-42be-a7c3-118258b803d6",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -220,
+        -80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bb0e1337-6fda-4a22-9963-d0b1271fc2a6",
+              "name": "lastmod",
+              "type": "string",
+              "value": "={{ $json.lastmod }}"
+            },
+            {
+              "id": "e7517c23-f989-4d75-9078-d82c75e51c65",
+              "name": "loc",
+              "type": "string",
+              "value": "={{ $json.loc }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc9a39cd-abde-44b8-8367-47fa54a29c92",
+      "name": "Assign mandatiry sitemap fields",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -40,
+        160
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "options": {
+          "explicitArray": false
+        }
+      },
+      "id": "2fb75efc-d148-4e73-a058-d86d0e464443",
+      "name": "convert page data to JSON",
+      "type": "n8n-nodes-base.xml",
+      "position": [
+        -920,
+        160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "https://wordpress.org/sitemap.xml",
+        "options": {}
+      },
+      "id": "a6df9be4-db0a-42d2-beee-613de4f3b70e",
+      "name": "Get sitemap.xml",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1660,
+        160
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.loc }}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 150
+            }
+          }
+        }
+      },
+      "id": "19032771-02c3-4588-9bcb-179b08625597",
+      "name": "Get content of each sitemap",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1100,
+        160
+      ],
+      "typeVersion": 4.1
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "lastmod",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7c68fbb8-9757-41d6-9310-656f92b3974b",
+      "name": "Sort",
+      "type": "n8n-nodes-base.sort",
+      "position": [
+        -400,
+        160
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-06-29T14:13:28.841Z",
+      "updatedAt": "2025-06-29T14:13:28.841Z",
+      "role": "workflow:owner",
+      "workflowId": "jM31Jcd4d2B3YLoq",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-29T14:17:57.055Z",
+  "versionId": "f697460f-d9a3-479b-ad89-4adf42c2e4d0"
+}
