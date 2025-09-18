@@ -1,0 +1,126 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get list of chats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-03T08:35:51.801Z",
+  "id": "vuFMIGWu3uxeoUF4",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "chat"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        160,
+        0
+      ],
+      "id": "8023fd53-c40b-4835-af3e-7863b1068067",
+      "name": "Get list of chats",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        0
+      ],
+      "id": "11776162-e32c-4a3f-a547-292c373e0cf4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -280,
+        260
+      ],
+      "id": "79b49e0c-178e-41c7-869f-396663fbd0e0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "phoneNumber": "+918780176047",
+        "message": "Hey"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        260
+      ],
+      "id": "60245641-020e-4f03-b4af-c84e0011211e",
+      "name": "Send a text message",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-03T08:35:51.801Z",
+      "updatedAt": "2025-08-03T08:35:51.801Z",
+      "role": "workflow:owner",
+      "workflowId": "vuFMIGWu3uxeoUF4",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-03T08:41:34.736Z",
+  "versionId": "157f9850-5249-4d0f-af0e-309d8bcd5a7c"
+}
