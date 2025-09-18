@@ -1,0 +1,582 @@
+{
+  "active": true,
+  "connections": {
+    "Business name fetcher": {
+      "main": [
+        [
+          {
+            "node": "fetch-business-details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch-business-details": {
+      "main": [
+        [
+          {
+            "node": "Respond with details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scrap status checker": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "merge scrap status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scrap data fetcher": {
+      "main": [
+        [
+          {
+            "node": "Fetch scrapped data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch scrapped data": {
+      "main": [
+        [
+          {
+            "node": "merge all data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge all data": {
+      "main": [
+        [
+          {
+            "node": "Respond scrapped data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "merge scrap status": {
+      "main": [
+        [
+          {
+            "node": "Respond scrap status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fetch-all-business-details": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Business": {
+      "main": [
+        [
+          {
+            "node": "fetch-all-business-details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Respond all business details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-01T08:15:07.510Z",
+  "id": "KWkoJErIzoKWvLb2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "DB tools",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get-business",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        -300
+      ],
+      "id": "2da08c7f-dfb5-40a5-98d6-f063ae47d4a5",
+      "name": "Business name fetcher",
+      "webhookId": "ff07a08d-301d-4e80-ba01-1f00c53866fd",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "url",
+              "condition": "LIKE",
+              "value": "={{ $json.body.url }}"
+            }
+          ]
+        },
+        "options": {
+          "outputColumns": [
+            "site_name",
+            "url",
+            "vector_store_name",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -300,
+        -300
+      ],
+      "id": "abc00f76-035d-4866-ad90-6a90560deb4f",
+      "name": "fetch-business-details",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        -60,
+        -300
+      ],
+      "id": "726ed372-3c53-4efb-bf73-fdb8df425361",
+      "name": "Respond with details",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "content": "## Fetch business details from main table",
+        "height": 320,
+        "width": 860
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        -400
+      ],
+      "typeVersion": 1,
+      "id": "71057577-cb5b-476b-b5cc-22b157c0fc05",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "scrap-status",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        220
+      ],
+      "id": "3ac2e544-bf86-453d-b48e-3bf055dbf963",
+      "name": "scrap status checker",
+      "webhookId": "91606d89-7e65-4a6d-95fb-db1072b2c4a0"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $json.body[\"business-name\"] }}_intr_links",
+          "mode": "name"
+        },
+        "options": {
+          "outputColumns": [
+            "sitelink",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -320,
+        220
+      ],
+      "id": "8c20a6c2-3f70-4e51-a8e4-d930f4155d00",
+      "name": "Postgres",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Fetch site scrapping status",
+        "height": 380,
+        "width": 1000,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        80
+      ],
+      "typeVersion": 1,
+      "id": "e0a1e0cc-1c43-48d4-a39b-6e181b3825cd",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Fetch site scrapping data\n",
+        "height": 380,
+        "width": 1000,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -620,
+        660
+      ],
+      "typeVersion": 1,
+      "id": "30925fd4-6060-4c96-820f-5188aed65286",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "scrap-data",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        800
+      ],
+      "id": "78e019f8-300b-439b-9cea-9ae69838b73b",
+      "name": "scrap data fetcher",
+      "webhookId": "91606d89-7e65-4a6d-95fb-db1072b2c4a0"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $json.body[\"business-name\"] }}_tbl",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "options": {
+          "outputColumns": [
+            "source_link",
+            "title",
+            "description",
+            "clean_html",
+            "chunks",
+            "chunk_count",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -300,
+        800
+      ],
+      "id": "adc13fa8-ac3d-416b-b477-7f836697e774",
+      "name": "Fetch scrapped data",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        800
+      ],
+      "id": "2eb14508-a818-479c-bf18-534308c37d7a",
+      "name": "merge all data",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        220
+      ],
+      "id": "abaa1c8e-313d-474a-b51a-1ad03d35aeee",
+      "name": "merge scrap status"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        800
+      ],
+      "id": "24cf52bd-27e9-4938-b082-9667e9c012c5",
+      "name": "Respond scrapped data",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        100,
+        220
+      ],
+      "id": "9e6ac3f4-937b-49e0-ad0c-4bf9cf6b61a3",
+      "name": "Respond scrap status",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "content": "## list all business details from main table",
+        "height": 320,
+        "width": 1100,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        -840
+      ],
+      "typeVersion": 1,
+      "id": "ecc2e719-a551-4003-b0a6-86c76dfb44a2",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "returnAll": true,
+        "options": {
+          "outputColumns": [
+            "site_name",
+            "url",
+            "vector_store_name",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -300,
+        -740
+      ],
+      "id": "5f16f944-869f-4f6c-9b14-d71703ec54b0",
+      "name": "fetch-all-business-details",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "list-all-business",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        -740
+      ],
+      "id": "cc657755-2526-4de8-b544-50603cf12e46",
+      "name": "List Business",
+      "webhookId": "ff07a08d-301d-4e80-ba01-1f00c53866fd",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        -740
+      ],
+      "id": "3c82967b-0564-45e8-9cd7-d603ebb1b1c2",
+      "name": "Respond all business details",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "business",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -740
+      ],
+      "id": "b981e213-c4d8-4f1e-a294-a87afc16ae8f",
+      "name": "Aggregate"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-06-01T08:15:07.510Z",
+      "updatedAt": "2025-06-01T08:15:07.510Z",
+      "role": "workflow:owner",
+      "workflowId": "KWkoJErIzoKWvLb2",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 4,
+  "updatedAt": "2025-06-01T13:38:29.962Z",
+  "versionId": "5c6bfe17-e1ed-4ed9-97c6-1bae58e6fc21"
+}
