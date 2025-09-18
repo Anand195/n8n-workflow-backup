@@ -1,0 +1,55 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-06-14T09:05:21.479Z",
+  "id": "foRBJ7CPq31DS1s7",
+  "isArchived": false,
+  "meta": null,
+  "name": "MCP server",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "image-gen"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "15a50086-90f4-4e95-a8ac-a673d173baf8",
+      "name": "MCP Server Trigger",
+      "webhookId": "37463f1d-e42a-4b10-935b-1560da677195"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-06-14T09:05:21.479Z",
+      "updatedAt": "2025-06-14T09:05:21.479Z",
+      "role": "workflow:owner",
+      "workflowId": "foRBJ7CPq31DS1s7",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-14T09:05:23.353Z",
+  "versionId": "aa00344e-6d71-4623-9af9-a7a385c794b4"
+}
