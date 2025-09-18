@@ -1,0 +1,1564 @@
+{
+  "active": true,
+  "connections": {
+    "Health": {
+      "main": [
+        [
+          {
+            "node": "Health Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DB Health": {
+      "main": [
+        [
+          {
+            "node": "DB health and main table check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DB health and main table check": {
+      "main": [
+        [
+          {
+            "node": "DB Health Respond",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DB Health Respond - error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "metrics": {
+      "main": [
+        [
+          {
+            "node": "Get all site links from main table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all site links from main table": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DB Health Respond - error1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate all site stats",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "list all links from site table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Grab all link from intr_links table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "list all links from site table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate site table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grab all link from intr_links table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate all intr links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate site table": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate all intr links": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Aggregate all site stats": {
+      "main": [
+        [
+          {
+            "node": "DB Health Respond1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "per site metrics": {
+      "main": [
+        [
+          {
+            "node": "list links from site table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Grab links from intr_links table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "list links from site table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grab links from intr_links table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site intr links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site table": {
+      "main": [
+        [
+          {
+            "node": "Merge per site link metric",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site intr links": {
+      "main": [
+        [
+          {
+            "node": "Merge per site link metric",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge per site link metric": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site stats": {
+      "main": [
+        [
+          {
+            "node": "Per site metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site table1": {
+      "main": [
+        [
+          {
+            "node": "Merge per site link metric1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site intr links1": {
+      "main": [
+        [
+          {
+            "node": "Merge per site link metric1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge per site link metric1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate per site stats1": {
+      "main": [
+        [
+          {
+            "node": "Per site metrics1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "per site links grabber": {
+      "main": [
+        [
+          {
+            "node": "Grab links from site table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Grab links from intr_links table of a site",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grab links from site table": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grab links from intr_links table of a site": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site intr links1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Aggregate per site stats1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete all data for a site": {
+      "main": [
+        [
+          {
+            "node": "Check site availablity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete record from main table": {
+      "main": [
+        [
+          {
+            "node": "Final status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete site table": {
+      "main": [
+        [
+          {
+            "node": "Final status",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Drop site's intr links table": {
+      "main": [
+        [
+          {
+            "node": "Final status",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Delete site's vector db table": {
+      "main": [
+        [
+          {
+            "node": "Final status",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Final status": {
+      "main": [
+        [
+          {
+            "node": "Sucess respsonse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check site availablity": {
+      "main": [
+        [
+          {
+            "node": "proceed if site found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "proceed if site found": {
+      "main": [
+        [
+          {
+            "node": "Delete record from main table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete site table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Drop site's intr links table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete site's vector db table",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "failure respsone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-03T08:55:49.685Z",
+  "id": "bYVBX03cctRmwXcQ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ScaleBot service GET request",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "scalebot/health",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Status",
+                "value": "OK"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -100
+      ],
+      "id": "ef387a3d-d691-4086-8c3b-96875ab6eac3",
+      "name": "Health",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## GET endpoints to be designed\n\n###  Health endpoint to get the scalebot service health\n\n### Metrics to display the number of sites with their count of sitelinks filtered by their status\n\n### full to display the service health and database health\n\n### Site lister to scrap get the list of sites with the count to get the total incoming sites and their current status\n\n### Site by status grabber to Get the list of all the links with their status and total count",
+        "height": 340,
+        "width": 620
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        160,
+        -80
+      ],
+      "typeVersion": 1,
+      "id": "82d1fddb-0c0a-4022-8d2e-6870a2ac318d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"Service Health status\":\"OK\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -120,
+        -100
+      ],
+      "id": "d7a5a54e-f3d6-4f98-9cd7-3be7a1255df6",
+      "name": "Health Respond"
+    },
+    {
+      "parameters": {
+        "path": "scalebot/db",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Status",
+                "value": "OK"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        240
+      ],
+      "id": "3327c917-33f0-4351-af36-49f7dfc47272",
+      "name": "DB Health",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"DB status\":\"healthy\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        120,
+        240
+      ],
+      "id": "e8ba1a93-bdce-47d7-9af7-ee82f463bbda",
+      "name": "DB Health Respond"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "limit": 1,
+        "options": {
+          "outputColumns": [
+            "site_name"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -140,
+        240
+      ],
+      "id": "1500d4dc-389a-4671-94c6-d08f4bf0a81a",
+      "name": "DB health and main table check",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"DB status\":\"unhealth\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        140,
+        400
+      ],
+      "id": "2ce983c0-9907-4fc1-93c9-eff530e96e96",
+      "name": "DB Health Respond - error"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"Metrics status\":\"healthy\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\",\n\"total_sites\":{{ $json.stats.length }},\n\"unique site list\":\"{{ $json.stats.map(item => Object.keys(item)[0].split('_')[0]) }}\",\n\"stats\" : {{ $json.stats.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        580,
+        720
+      ],
+      "id": "dd7489dc-f3f5-4902-a676-bf170500d65a",
+      "name": "DB Health Respond1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"DB status\":\"unhealth\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -80,
+        1040
+      ],
+      "id": "4c59fd83-4d24-4fe4-98e4-e094b0981190",
+      "name": "DB Health Respond - error1"
+    },
+    {
+      "parameters": {
+        "path": "scalebot/metrics",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Status",
+                "value": "OK"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        860
+      ],
+      "id": "30488055-edad-4276-85df-49cb50960f75",
+      "name": "metrics",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "returnAll": true,
+        "options": {
+          "outputColumns": [
+            "site_name",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -300,
+        860
+      ],
+      "id": "77d36086-b061-4bf4-a05d-b3ae4059e04b",
+      "name": "Get all site links from main table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        160,
+        860
+      ],
+      "id": "d637b61d-7210-4594-8408-47f38060619b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "site_name",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        840
+      ],
+      "id": "2c7e6013-3af1-4f2d-b5c3-95f0dd701e01",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.site_name }}_tbl\nGROUP BY\n    status\nUNION ALL\nSELECT\n    'total' AS status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.site_name }}_tbl;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        380,
+        880
+      ],
+      "id": "b41325f3-4fa2-41fd-988a-c962519e9db5",
+      "name": "list all links from site table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.site_name }}_intr_links\nGROUP BY\n    status\nUNION ALL\nSELECT\n    'total' AS status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.site_name }}_intr_links;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        380,
+        1080
+      ],
+      "id": "c73bd7f9-52d3-457d-8285-74f588ce612d",
+      "name": "Grab all link from intr_links table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combineBySql",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        840,
+        960
+      ],
+      "id": "99915430-edcc-4ce7-8269-f8a143f974e4",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('Loop Over Items').first().json.site_name }}_site_table ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        600,
+        880
+      ],
+      "id": "0c8134cd-bb54-4eb6-a410-410335445368",
+      "name": "Aggregate site table"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('Loop Over Items').first().json.site_name }}_intr_links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        600,
+        1080
+      ],
+      "id": "3915396a-3688-4af1-9cfd-e7cf585c492d",
+      "name": "Aggregate all intr links"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "stats",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        380,
+        720
+      ],
+      "id": "c27c5d57-6866-4004-8ef6-8c6d62797a63",
+      "name": "Aggregate all site stats"
+    },
+    {
+      "parameters": {
+        "path": "scalebot/site-metrics",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Status",
+                "value": "OK"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        1600
+      ],
+      "id": "b119f151-c3d0-4919-8b07-1d8bc8ef6375",
+      "name": "per site metrics",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- SELECT\n--     status,\n--     COUNT(*) AS link_count\n-- FROM\n--     {{ $json.query.sitename }}_tbl\n-- GROUP BY\n--     status;\n\nSELECT\n    status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.query.sitename }}_tbl\nGROUP BY\n    status\nUNION ALL\nSELECT\n    'total' AS status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.query.sitename }}_tbl;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -40,
+        1500
+      ],
+      "id": "3164d32c-aee6-4f10-b17f-d32e5f42f3ea",
+      "name": "list links from site table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.query.sitename }}_intr_links\nGROUP BY\n    status\nUNION ALL\nSELECT\n    'total' AS status,\n    COUNT(*) AS link_count\nFROM\n    {{ $json.query.sitename }}_intr_links;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -40,
+        1700
+      ],
+      "id": "f22e609e-447b-4b30-9ff2-917d1701b413",
+      "name": "Grab links from intr_links table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('per site metrics').first().json.query.sitename }}_site_table ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        180,
+        1500
+      ],
+      "id": "9fd8cdfd-3996-4738-8005-6d62805d9ced",
+      "name": "Aggregate per site table"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('per site metrics').first().json.query.sitename }}_intr_links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        180,
+        1700
+      ],
+      "id": "222cc618-707a-4ce0-9f69-30de28f1c630",
+      "name": "Aggregate per site intr links"
+    },
+    {
+      "parameters": {
+        "mode": "combineBySql",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        1600
+      ],
+      "id": "5135f45b-eb11-4a8d-8415-9fe701ed3665",
+      "name": "Merge per site link metric"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "stats",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        580,
+        1600
+      ],
+      "id": "6f8296a8-2dc2-4855-86d1-849068edfeaa",
+      "name": "Aggregate per site stats"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"Metrics status\":\"healthy\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\",\n\"total_sites\":{{ $json.stats.length }},\n\"unique site list\":\"{{ $json.stats.map(item => Object.keys(item)[0].split('_')[0]) }}\",\n\"stats\" : {{ $json.stats.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        780,
+        1600
+      ],
+      "id": "f26fa44e-720a-461e-a136-33e83b783a0b",
+      "name": "Per site metrics"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('per site links grabber').first().json.query.sitename }}_site_table",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        180,
+        2020
+      ],
+      "id": "92107897-483f-413a-82c1-7e6f2c431c37",
+      "name": "Aggregate per site table1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "={{ $('per site links grabber').first().json.query.sitename }}_intr_links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        180,
+        2220
+      ],
+      "id": "7c73f8bb-ffa3-4dd5-a4a6-0b2d6bb120a7",
+      "name": "Aggregate per site intr links1"
+    },
+    {
+      "parameters": {
+        "mode": "combineBySql",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        380,
+        2120
+      ],
+      "id": "ea3c85aa-49ba-4a36-880e-15528378429c",
+      "name": "Merge per site link metric1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "stats",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        800,
+        2120
+      ],
+      "id": "08eee9e7-32c6-4c0a-b34b-8c7f206cc28d",
+      "name": "Aggregate per site stats1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"Metrics status\":\"healthy\",\n\"timestamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\",\n\"total_sites\":{{ $json.stats.length }},\n\"unique site list\":\"{{ $json.stats.map(item => Object.keys(item)[0].split('_')[0]) }}\",\n\"stats\" : {{ $json.stats.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1000,
+        2120
+      ],
+      "id": "63b868c6-10a2-4397-9696-2fa0962ec7e2",
+      "name": "Per site metrics1"
+    },
+    {
+      "parameters": {
+        "path": "scalebot/site-link-grabber",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Status",
+                "value": "OK"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        2120
+      ],
+      "id": "70c74845-796b-4e84-b8e1-07c04c00b4e9",
+      "name": "per site links grabber",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    source_link,\n    status\nFROM\n    {{ $json.query.sitename }}_tbl\n{{ $json.query.filter ? \"WHERE status = '\" + $json.query.filter + \"'\" : \"\" }}\n{{ $json.query[\"record-count\"] ? \"LIMIT \" + $json.query[\"record-count\"] : \"\" }}\n{{ $json.query.offset ? \"OFFSET \" + ($json.query.offset * $json.query[\"record-count\"]) : \"\" }};",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -40,
+        2020
+      ],
+      "id": "275f69f1-7873-406f-9f9b-72334c023cbe",
+      "name": "Grab links from site table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    sitelink,\n    status\nFROM\n    {{ $json.query.sitename }}_intr_links\n{{ $json.query.filter ? \"WHERE status = '\" + $json.query.filter + \"'\" : \"\" }}\n{{ $json.query[\"record-count\"] ? \"LIMIT \" + $json.query[\"record-count\"] : \"\" }}\n{{ $json.query.offset ? \"OFFSET \" + ($json.query.offset * $json.query[\"record-count\"]) : \"\" }};\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -40,
+        2220
+      ],
+      "id": "6007f5b2-b8a7-41d5-b3d4-12b3b58390b9",
+      "name": "Grab links from intr_links table of a site",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import json\nfrom collections import Counter\n\n# Input data from your pipeline\nsite_table = $input.first().json.zealousweb_site_table\nintr_links = $input.first().json.zealousweb_intr_links\n\nresult = {}\nfor table_name, rows in site_table.items():\n    # count statuses\n    status_counts = Counter(row[\"status\"] for row in rows)\n    # add total\n    status_counts[\"total\"] = len(rows)\n    result[table_name] = dict(status_counts)\n\n# Print result as JSON\nprint(json.dumps(result, indent=2))\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        600,
+        2120
+      ],
+      "id": "0d366ed7-93a6-41d9-a2c1-1a8623677808",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DROP TABLE ns_serenityspa;\nDROP TABLE serenityspa_intr_links;\nDROP TABLE  serenityspa_tbl;\n-- DROP TABLE ns_scalesync;\n-- DROP TABLE scalesync_intr_links;\n-- DROP TABLE  scalesync_tbl;\n-- DROP TABLE sites_main_tbl;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        920,
+        2580
+      ],
+      "id": "c180f7ed-85da-4f69-a7da-a491a976b8d5",
+      "name": "Delete tables",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "DELETE",
+        "path": "scalebot/delete-all",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        2820
+      ],
+      "id": "0ab4e910-f4c1-46cf-a5cb-a544d1d553a9",
+      "name": "Delete all data for a site",
+      "webhookId": "f6a692a9-daec-4f7c-bb4c-7c2d55ad04c8",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $json.site_name }}_tbl",
+          "mode": "name"
+        },
+        "deleteCommand": "drop",
+        "options": {
+          "cascade": true
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        220,
+        2720
+      ],
+      "id": "2d009aef-c824-429c-94e9-8bb64d19165f",
+      "name": "Delete site table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "site_name",
+              "value": "={{ $json.site_name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        220,
+        2500
+      ],
+      "id": "748c6aeb-6b9a-4a58-b95e-a3394dee826b",
+      "name": "Delete record from main table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "deleteCommand": "drop",
+        "options": {
+          "cascade": true
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        220,
+        2920
+      ],
+      "id": "403a6c1d-336a-4428-b7f1-5b1aebadebb9",
+      "name": "Drop site's intr links table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=ns_{{ $json.site_name }}",
+          "mode": "name"
+        },
+        "deleteCommand": "drop",
+        "options": {
+          "cascade": true
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        220,
+        3140
+      ],
+      "id": "70f41359-1286-4c23-9159-097a28f6e8b6",
+      "name": "Delete site's vector db table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        640,
+        2800
+      ],
+      "id": "d1195549-5b71-4569-9aa9-f5a929131caa",
+      "name": "Final status"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "site_name",
+              "value": "={{ $json.query.sitename }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -480,
+        2820
+      ],
+      "id": "5f367681-a322-4a00-9307-946612fedca7",
+      "name": "Check site availablity",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f299c101-d193-42ba-98f6-bdc9f75f9858",
+              "leftValue": "={{ $json.site_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -260,
+        2820
+      ],
+      "id": "c006e167-1313-414d-b0b8-37c476bba0e8",
+      "name": "proceed if site found"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"error\",\n  \"msg\":\"site not found\",\n  \"timetamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        240,
+        3340
+      ],
+      "id": "4883377d-7946-4582-8914-ee43f1812245",
+      "name": "failure respsone"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"Deleted {{ $('Delete all data for a site').first().json.query.sitename }} entry from Main table\": {{ $('Delete record from main table').first().json.success }},\n\"Deleted {{ $('Delete all data for a site').first().json.query.sitename }}_tbl table\": {{ $('Delete site table').first().json.success }},\n\"Deleted {{ $('Delete all data for a site').first().json.query.sitename }}_intr_links table\": {{ $('Drop site\\'s intr links table').first().json.success }},\n\"Deleted ns_{{ $('Delete all data for a site').first().json.query.sitename }} table\": {{ $('Drop site\\'s intr links table').first().json.success }},\n\"timetamp\":\"{{ $now.format('yyyy-MM-dd hh:mma') }}\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        820,
+        2820
+      ],
+      "id": "17e9b147-227d-41b8-8456-9df7a000e824",
+      "name": "Sucess respsonse"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "per site links grabber": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8n.scalebot.in",
+            "x-real-ip": "43.250.158.226",
+            "x-forwarded-for": "43.250.158.226",
+            "x-forwarded-proto": "https",
+            "authorization": "Bearer testauth",
+            "user-agent": "PostmanRuntime/7.44.1",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "e49f8d38-ab33-4714-bbff-b4d1b4d1a55a",
+            "accept-encoding": "gzip, deflate, br"
+          },
+          "params": {},
+          "query": {
+            "sitename": "zealousweb",
+            "record-count": "10",
+            "offset": "1"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.scalebot.in/webhook-test/scalebot/site-link-grabber",
+          "executionMode": "test"
+        }
+      }
+    ],
+    "Delete all data for a site": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8n.scalebot.in",
+            "x-real-ip": "103.249.234.250",
+            "x-forwarded-for": "103.249.234.250",
+            "x-forwarded-proto": "https",
+            "authorization": "Bearer testauth",
+            "user-agent": "PostmanRuntime/7.45.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "cd34512f-2ab8-4373-b4ea-4af9b920b531",
+            "accept-encoding": "gzip, deflate, br"
+          },
+          "params": {},
+          "query": {
+            "sitename": "serenityspa"
+          },
+          "body": {},
+          "webhookUrl": "https://n8n.scalebot.in/webhook-test/scalebot/delete-all",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-03T08:55:49.685Z",
+      "updatedAt": "2025-08-03T08:55:49.685Z",
+      "role": "workflow:owner",
+      "workflowId": "bYVBX03cctRmwXcQ",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 6,
+  "updatedAt": "2025-08-17T06:49:24.743Z",
+  "versionId": "cedd6c1c-14ff-4a05-8068-369f157ddac8"
+}
