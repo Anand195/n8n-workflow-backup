@@ -1,0 +1,589 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "POSTGRES": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message in WhatsApp Business Cloud": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-13T08:48:55.247Z",
+  "id": "ERQ3csZC1WEDqIhh",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2160,
+        20
+      ],
+      "id": "2989aa17-4329-472f-a25d-177ffb4139c1",
+      "name": "Send a text message",
+      "webhookId": "634d7730-a5a5-408e-ab0d-84ec3449da34",
+      "credentials": {
+        "telegramApi": {
+          "id": "iKCuyLg9vPhNHpZo",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1420,
+        40
+      ],
+      "id": "b116fcc8-f70f-4d83-986f-8e1aadf1310b",
+      "name": "Telegram Trigger",
+      "webhookId": "f1507f56-9e7d-4563-923a-5635c2cd28f5",
+      "credentials": {
+        "telegramApi": {
+          "id": "iKCuyLg9vPhNHpZo",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DROP TABLE IF EXISTS telegram_email_alert;\n\nCREATE TABLE IF NOT EXISTS telegram_email_alert (\n    id VARCHAR(255),\n    email_id VARCHAR(255),\n    sender_contact VARCHAR(255),\n    chat_id VARCHAR(255),\n    sender_firstName VARCHAR(255),\n    sender_lastName VARCHAR(255),\n    initiation_date VARCHAR(255),\n    PRIMARY KEY (email_id, sender_contact, chat_id),\n    UNIQUE (email_id, sender_contact)\n);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        780,
+        -440
+      ],
+      "id": "fed14a87-8fac-44b3-9098-38225615453c",
+      "name": "Create email-alert-db",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=# You are a check-in agent \n## Your Taks is to grab the email and phone number \n- Extract the email id and phone number from the input \n- Pass these inputs from the following validation and provide respsone accordingly\n\n## Email validator \n- Email address should have the '@'\n\n\n### Error reply\n- If the email is invalid reply like 'Kindly provide the valid email address!'\n\n## Phoner number validation\n- Phone number should be exactly 10 digit long \n- no country code is allowed \n\n### Error response\n- If the validation failed reply with message like 'Kindly provide the valid phone number ' \n\n## Input validation \n- User should enter the phone number and email address in the single message \n\n### Error response\n- If validation failed reply with message like 'Kindly provide email and phone number together'\n\n## Store input \n- use the postgres tool too store the details \n- store following\n- phone number\n- email\n\n## Upon grabbing phone and email as valid input\n- send reply like this - you will get notified for your emails in this chat!\n "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        40
+      ],
+      "id": "7c250b0c-1040-46e2-be59-c4182d4aeca4",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        260
+      ],
+      "id": "f32876fb-69a8-49dd-bacd-f24df13a0a53",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "4HC37DbFWSjGY4UP",
+          "name": "Google Gemini(PaLM) Api (PAID)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1880,
+        340
+      ],
+      "id": "03da6838-597c-48e1-b6d2-13b9a53302f8",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "telegram_email_alert",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sender_contact": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('sender_contact', ``, 'string') }}",
+            "email_id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('email_id', ``, 'string') }}",
+            "chat_id": "={{ $json.message.chat.id }}",
+            "sender_firstname": "={{ $json.message.chat.first_name }}",
+            "sender_lastname": "={{ $json.message.chat.last_name }}",
+            "initiation_date": "={{ $json.message.date }}",
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "email_id",
+            "sender_contact"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "email_id",
+              "displayName": "email_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_contact",
+              "displayName": "sender_contact",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sender_firstname",
+              "displayName": "sender_firstname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "sender_lastname",
+              "displayName": "sender_lastname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "initiation_date",
+              "displayName": "initiation_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1980,
+        260
+      ],
+      "id": "8bc17eb4-d33e-4c1e-8990-4db98b6f19d2",
+      "name": "POSTGRES",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "member"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        980,
+        160
+      ],
+      "id": "d4c77a2f-8b4b-4e56-80b0-2bbcd8fe544f",
+      "name": "Get a member in a chat",
+      "webhookId": "fe7bcd12-c306-4261-b65f-d4230a1c5407",
+      "credentials": {
+        "telegramApi": {
+          "id": "iKCuyLg9vPhNHpZo",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTool",
+      "typeVersion": 1,
+      "position": [
+        680,
+        220
+      ],
+      "id": "a5a9fc46-d9bb-4048-a9a2-abfd6f5f4b15",
+      "name": "Send message in WhatsApp Business Cloud",
+      "webhookId": "b1e89e14-3c18-402a-95b4-9eaf2ec1ef09",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "5pVvDRUfl4bqyi4i",
+          "name": "WhatsApp account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        500,
+        240
+      ],
+      "id": "43869d8c-fa7a-42fd-8b83-f36bfb6a96d8",
+      "name": "Send a message in Gmail",
+      "webhookId": "0b5f4833-e8cb-4ecc-b96d-538fa1ab68f0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uaREr7KhVp62WVz0",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "height": 660,
+        "width": 1080
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "6a4d2690-d249-42c8-a59c-5a57b2584a1b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        340,
+        240
+      ],
+      "id": "19a0ef5a-d7bd-41f9-9cc3-ac75b3a23103",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        140,
+        220
+      ],
+      "id": "827cb248-925f-4a2b-8d34-aed7c804bd71",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "4HC37DbFWSjGY4UP",
+          "name": "Google Gemini(PaLM) Api (PAID)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        240,
+        20
+      ],
+      "id": "1842743f-5474-4e00-9fce-08d600231661",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        20
+      ],
+      "id": "d3a379c1-f36e-4200-abac-185933b553b5",
+      "name": "When chat message received",
+      "webhookId": "3a42e8af-80fe-49a0-af71-320f2cec2817"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "telegram_email_alert",
+          "mode": "list",
+          "cachedResultName": "telegram_email_alert"
+        },
+        "limit": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1680,
+        -420
+      ],
+      "id": "f7dd3b88-8585-4ef3-adca-04f0e992569b",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "=You got new mail from :  {{ $('Gmail Trigger').first().json.From }}\n\nHere is the subject : {{ $('Gmail Trigger').first().json.Subject }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1900,
+        -420
+      ],
+      "id": "67e95d64-ff58-4489-a2cb-f228b160dc8f",
+      "name": "Send a text message1",
+      "webhookId": "f931adf3-f155-46bc-812d-66e93c6e8475",
+      "credentials": {
+        "telegramApi": {
+          "id": "iKCuyLg9vPhNHpZo",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-07-13T08:48:55.247Z",
+      "updatedAt": "2025-07-13T08:48:55.247Z",
+      "role": "workflow:owner",
+      "workflowId": "ERQ3csZC1WEDqIhh",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": {
+    "node:Email Trigger (IMAP)": {
+      "lastMessageUid": 208056
+    },
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1752411453,
+        "possibleDuplicates": [
+          "19803dcb8c95eafc"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-07-13T13:36:52.493Z",
+  "versionId": "c115fd0c-84bd-441d-bc55-cfb38466cd23"
+}
