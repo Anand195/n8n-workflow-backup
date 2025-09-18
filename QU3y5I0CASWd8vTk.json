@@ -1,0 +1,2077 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Enter site link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch_site_data": {
+      "main": [
+        [
+          {
+            "node": "Clean_html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enter site link": {
+      "main": [
+        []
+      ]
+    },
+    "Clean_html": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Chunks From Doc": {
+      "main": [
+        [
+          {
+            "node": "Chunks To List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chunks To List": {
+      "main": [
+        [
+          {
+            "node": "Generate Contextual Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Contextual Text": {
+      "main": [
+        [
+          {
+            "node": "Get Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Values": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Contextual Text",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge chunks into a large string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge chunks into a large string": {
+      "main": [
+        [
+          {
+            "node": "Insert or update data to site table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store temp links": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Create Chunks From Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        []
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update status in main table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "upsert record in intr links table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        []
+      ]
+    },
+    "Start scrapping": {
+      "main": [
+        []
+      ]
+    },
+    "Fetch the site specific table data": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Re-start scrapping",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update status in main table": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upsert record in intr links table": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        []
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Store temp links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update data to site table": {
+      "main": [
+        [
+          {
+            "node": "Update link scrapping status in intr_links table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update link scrapping status in intr_links table": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        []
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Scrapping": {
+      "main": [
+        [
+          {
+            "node": "Fetch the site specific table data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        []
+      ]
+    },
+    "Insert or update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Fetch_site_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-22T17:41:40.280Z",
+  "id": "QU3y5I0CASWd8vTk",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Recurrsive scrapper",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2800,
+        1200
+      ],
+      "id": "e36952b9-2765-4331-89b5-c44791743bb1",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "content": "## Create vector store with sitename if not present\n\nid\nsource_link\ntitle\ndescription\nchunk\nembedding\nreq_in",
+        "height": 260,
+        "width": 500,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1840,
+        80
+      ],
+      "typeVersion": 1,
+      "id": "bf441661-67f3-439d-9863-bb0fa5a6ab5e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Create a DB table with sitename \n\ncolumns\nsource_link\nhtml\nclean_html\nchunks # seprated with \" ######------###### \"\nchunk_count\nreq_time",
+        "height": 300,
+        "width": 360,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2760,
+        40
+      ],
+      "typeVersion": 1,
+      "id": "19b6cc97-8624-4c8b-bcaf-eedac3ce67c6",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Create main table if doesn't exist\n\ncolumns \nid\nsite_name\nvector_store_name\nstatus\nrequ_time\n",
+        "height": 240,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2340,
+        20
+      ],
+      "typeVersion": 1,
+      "id": "90cae979-9fca-4e08-ae31-266399904ec8",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://crawl4ai:11235/crawl",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"urls\":[\"{{ $json.source_link }}\"]\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -280,
+        560
+      ],
+      "id": "9b30d17b-bc28-4b7a-bf74-aa5bd039cb4b",
+      "name": "Fetch_site_data",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f334c44e-16d2-4b1e-b6e3-3ec99e880f50",
+              "name": "body",
+              "value": "{\n\"business name\":\"scalesync\"\n}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2580,
+        1200
+      ],
+      "id": "55dfac63-d3dc-4de7-ad35-ed51c13f70b0",
+      "name": "Enter site link"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import re\nhtml_content = _input.first().json.results[0].cleaned_html\n\nfrom urllib.parse import urlparse\nimport re\nurl = _input.first().json.results[0].url\ndef extract_site_name(url):\n    try:\n        # Add http:// if no protocol specified\n        if not url.startswith(('http://', 'https://')):\n            url = 'http://' + url\n        \n        # Parse the URL\n        parsed = urlparse(url)\n        \n        # Get domain without www and split by dots\n        domain = parsed.netloc.replace('www.', '')\n        \n        # Get the main part (excluding TLD)\n        site_name = domain.split('.')[0]\n        \n        # Clean up any special characters and capitalize\n        site_name = re.sub(r'[^a-zA-Z0-9-]', '', site_name)\n        return site_name\n    \n    except Exception as e:\n        return \"Invalid URL\"\n\ndef clean_html_content(html_content):\n    if not html_content:\n        return \"\"\n\n    html_content = re.sub(r'<nav[^>]*>.*?</nav>', '', html_content, flags=re.DOTALL | re.IGNORECASE)\n    html_content = re.sub(r'<\\s*(br|div)\\s*/?>', ' ', html_content, flags=re.IGNORECASE)\n    html_content = re.sub(r'(?:<[^>]+>)+', ' ', html_content)\n\n    html_entities = {\n        '&nbsp;': ' ', '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '\"',\n        '&#39;': \"'\", '&ldquo;': '\"', '&rdquo;': '\"', '&lsquo;': \"'\", '&rsquo;': \"'\",\n        '&ndash;': '–', '&mdash;': '—'\n    }\n    for entity, replacement in html_entities.items():\n        html_content = html_content.replace(entity, replacement)\n\n    sentences = re.split(r'(?<=[.!?]) +', html_content)\n    seen = set()\n    unique_sentences = []\n    for sentence in sentences:\n        s = sentence.strip()\n        if s and s not in seen:\n            seen.add(s)\n            unique_sentences.append(s)\n\n    cleaned_text = ' '.join(unique_sentences)\n    cleaned_text = re.sub(r'\\s+', ' ', cleaned_text).strip()\n\n    return cleaned_text\n\ndef extract_intr_links(link_list):\n  linkList = []\n  for l in link_list:\n    linkList.append(l[\"href\"])\n  return linkList\nintrLinks = _input.first().json.results[0].links.internal\nreturn {\n  \"site_name\":extract_site_name(url),\n  \"url\":_input.first().json.results[0].url,\n  \"title\":_input.first().json.results[0].metadata.title,\n  \"description\":_input.first().json.results[0].metadata.description,\n  \"html\":_input.first().json.results[0].html,\n  \"clean_html\":clean_html_content(html_content),\n  \"links\":_input.first().json.results[0].links,\n  \"date\":_input.first().json.results[0].response_headers.date,\n  \"intr_links\": extract_intr_links(intrLinks) if len(intrLinks) > 0 else []\n       }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        560
+      ],
+      "id": "faff6165-32d8-4e8b-8242-a5df9e012b8a",
+      "name": "Clean_html"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{\n{\n  \"content\": `${ $json.text }\\n---\\n${ $json.chunk }`\n}\n}}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "=title",
+                "value": "={{ $('Clean_html').first().json.title || '' }}"
+              },
+              {
+                "name": "description",
+                "value": "={{ $('Clean_html').first().json.description || '' }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "bc74ce7c-b6eb-48e8-bdd9-5d9e495b2fd8",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        1000
+      ],
+      "id": "d0244f0d-27dc-4275-92e7-fcb0fe24ff9b",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// const chunks = [];\n// const chunkSize = 600;\n// const chunkOverlap = 0;\n// // const text = $json.clean_html.replace(/\\n/, '');\n// const text = $('Clean_html').item.json.clean_html.replace(/\\n/, '');\n\n// for (let i=0, j=Math.round(text.length/chunkSize); i<j; i++) {\n//   chunks.push(\n//     text.substr(\n//       Math.max(0,(i * chunkSize)-chunkOverlap),\n//       chunkSize\n//     )\n//   );\n// }\n\n// return { chunks };\nconst chunks = [];\nconst chunkSize = 600;\nconst chunkOverlap = 0;\n\n// Get the first matching item instead of assuming there's only one\nconst cleanHtmlItem = $('Clean_html').first();\n// Make sure the item exists before accessing its properties\nconst text = cleanHtmlItem ? cleanHtmlItem.json.clean_html.replace(/\\n/, '') : '';\n\nfor (let i=0, j=Math.ceil(text.length/chunkSize); i<j; i++) {\n  chunks.push(\n    text.substr(\n      Math.max(0,(i * chunkSize)-chunkOverlap),\n      chunkSize\n    )\n  );\n}\n\nreturn { chunks };"
+      },
+      "id": "d594c25c-97cf-473b-adec-baf9a23447a1",
+      "name": "Create Chunks From Doc",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "chunks",
+        "options": {
+          "destinationFieldName": "chunk"
+        }
+      },
+      "id": "998e0346-260a-44ad-a371-048b975a7efc",
+      "name": "Chunks To List",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<document> \n{{ $('Clean_html').first().json.clean_html }}\n</document>\nHere is the chunk we want to situate within the whole document \n<chunk> \n{{ $json.chunk }}\n</chunk> \nPlease give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk. Answer only with the succinct context and nothing else. "
+      },
+      "id": "e9595c30-1cfa-4d5e-a151-563f2142bbbb",
+      "name": "Generate Contextual Text",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1500,
+        480
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "069d067c-3534-4939-8ff4-34dee02a9436",
+              "name": "chunk",
+              "value": "={{ $('Chunks To List').item.json.chunk }}",
+              "type": "string"
+            },
+            {
+              "id": "24e01f4f-e156-47e9-a89e-9cbdccda6bd4",
+              "name": "text",
+              "value": "={{ $('Generate Contextual Text').item.json.text || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e2eb823-a02a-4541-b800-b69805b80bed",
+      "name": "Get Values",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1820,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "=ns_{{ $('Clean_html').first().json.site_name }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        2040,
+        620
+      ],
+      "id": "81ca1417-65b4-4971-9a59-3a73e110b958",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        660
+      ],
+      "id": "bb8f8b75-84ae-42c1-81a8-a6c400a07dd6",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        840
+      ],
+      "id": "0ce04fab-d637-43af-97af-45dd8854e62b",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        420
+      ],
+      "id": "b3032cf8-77c4-4fcb-8c76-f1cee50bb540",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "content": "## TODO's\n\n- Handle duplicate chunk insertion\n- Add column in the main table \"internal_links\", Put the internal links grabbed from crawl4ai as a set.\n- Add the looping to continue scrapping the web data\n- Grab the link form temp_intr_link table to loop over the data scrapping\n- ignore the link with file extesion\n- Add site limit as parameter to limit the number of sites to be scrapped",
+        "height": 300,
+        "width": 540
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "c1b546a3-3e93-4f33-ae6a-d3b78436f730",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "chunkList = _input.first().json.data\nchunkText = \" chunk : 0 \\n\"\nchunkCount = 0\nfor chunk in chunkList:\n  chunkCount += 1\n  chunkText += chunk[\"text\"]+\" --- \"+chunk[\"chunk\"]+\"\\n  ######------###### \\n chunk : \"+str(chunkCount)+\"\\n\"\n  \nreturn {\"merged_chunk\":chunkText.strip(),\n       \"chunk_count\":chunkCount}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        420
+      ],
+      "id": "8001d02a-bb21-4128-9faf-fd02a7bf118a",
+      "name": "Merge chunks into a large string"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Clean_html').first().json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sitelink": "={{ $json.intr_links }}",
+            "status": "pending"
+          },
+          "matchingColumns": [
+            "sitelink"
+          ],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1020,
+        660
+      ],
+      "id": "1d9f8833-fccf-4283-b874-d5f5d929b544",
+      "name": "Store temp links",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "intr_links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        300,
+        560
+      ],
+      "id": "c1953b9c-62c5-41c5-9cb9-3833dca6675f",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        500,
+        540
+      ],
+      "id": "487e6c15-9a9c-4d19-b46b-bbd0f64dff40",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "return {\"site_name\":_('Clean_html').first().json.site_name,\n       \"url\":_('Clean_html').first().json.url,\n        \"title\":_('Clean_html').first().json.title,\n        \"description\":_('Clean_html').first().json.description,\n        \"html\":_('Clean_html').first().json.html,\n        \"clean_html\":_('Clean_html').first().json.clean_html\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        480
+      ],
+      "id": "b33e6bc4-d701-4032-af02-e9d5da2596d3",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "sitelink"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        720,
+        480
+      ],
+      "id": "8e3e77e5-e327-45a7-a60f-25520a5a863b",
+      "name": "Aggregate1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "siteLinks = _input.first().json.data\nscrapList = []\nfor data in siteLinks:\n  if data[\"status\"] in [\"pending\",\"in-progress\"] and data[\"sitelink\"].find(\".pdf\") == -1:\n    scrapList.append(data[\"sitelink\"])\n\nreturn {\"scrapList\":scrapList}\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2140,
+        1260
+      ],
+      "id": "e05f6e3b-8cd2-43ad-9ef6-571fee8b1a54",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -2320,
+        1140
+      ],
+      "id": "d7a0bd1b-1933-4a48-a6b3-050c8dc6a1d7",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f6cf8fb8-fcd8-4702-9696-7ce8caf52f65",
+              "leftValue": "={{ $json.sitelink }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1120,
+        480
+      ],
+      "id": "194b2b30-ab23-4b5c-a502-e60e3d7b13e9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -860,
+        460
+      ],
+      "id": "53a40d8e-0670-4383-8b4b-4a70b24498de",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "scrapList",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -2080,
+        1120
+      ],
+      "id": "3a388736-e8bb-48d6-8620-3caa351a0881",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2920,
+        420
+      ],
+      "id": "1ac1e4f1-10a3-4b16-8479-d199d4721437",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "scrap-recursive",
+        "authentication": "headerAuth",
+        "options": {
+          "rawBody": true,
+          "responseData": "Recursive scrapper started"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1080,
+        2020
+      ],
+      "id": "826fa8a2-b8df-49de-8271-0dd5243c1748",
+      "name": "Start scrapping",
+      "webhookId": "3395a208-82c4-4451-8cbf-c4ed877b2c15",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $json.body[\"business name\"] }}_intr_links",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "status",
+              "value": "ready"
+            }
+          ]
+        },
+        "options": {
+          "outputColumns": [
+            "sitelink",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1380,
+        480
+      ],
+      "id": "0cca1cf7-8482-4e3a-9034-b00b79eb88e0",
+      "name": "Fetch the site specific table data",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5678/webhook/scrap-recursive",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "business name",
+              "value": "={{ $('Clean_html').first().json.site_name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2620,
+        1380
+      ],
+      "id": "ceb49c81-5591-41af-84b9-55d1eb7f9263",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"Scrapping status\": \"Success\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        -2340,
+        1340
+      ],
+      "id": "a6c98563-eff5-4c4d-9300-f6016de0ea48",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        860
+      ],
+      "id": "b0108437-6cdc-4d01-b8a0-82a4e063ac52",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "metadata.source"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        360
+      ],
+      "id": "cb0e0acc-515b-47cc-9e4b-d847b24d8ec1",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "list",
+          "cachedResultName": "sites_main_tbl"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "site_name": "={{ $('Start Scrapping').first().json.body[\"business name\"] }}",
+            "status": "completed"
+          },
+          "matchingColumns": [
+            "site_name"
+          ],
+          "schema": [
+            {
+              "id": "site_name",
+              "displayName": "site_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "vector_store_name",
+              "displayName": "vector_store_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "requ_time",
+              "displayName": "requ_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1000,
+        860
+      ],
+      "id": "489e6243-32a5-48ce-8f77-b48abe9c5a3e",
+      "name": "Update status in main table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Start Scrapping').first().json.body['business name'] }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sitelink": "={{ $json.sitelink }}",
+            "status": "in-progress"
+          },
+          "matchingColumns": [
+            "sitelink"
+          ],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "sitelink",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -660,
+        560
+      ],
+      "id": "14088563-4b88-4f28-abe0-99b8451c87a2",
+      "name": "upsert record in intr links table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "business name"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -2940,
+        1040
+      ],
+      "id": "d0e3de3d-d784-4639-8ddc-4b01edc7601f",
+      "name": "When Executed by Another Workflow",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "=\n  {\n\n    \"body\": {\n      \"business name\": \"{{ $json[\"business name\"] }}\"\n    }\n  } ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2600,
+        1000
+      ],
+      "id": "22a8ebf1-188c-4e89-a8a5-3b8569eb11fe",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f580cafa-376e-47b5-aa36-360f12b1388e",
+              "leftValue": "={{ $json.sitelink }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        820,
+        640
+      ],
+      "id": "8b34ff4f-c40d-4175-a061-f00ed3964d5f",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Clean_html').first().json.site_name }}_tbl",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "source_link": "={{ $('Clean_html').first().json.url }}",
+            "status": "completed",
+            "title": "={{ $('Clean_html').first().json.title }}",
+            "description": "={{ $('Clean_html').first().json.description  || '' }}",
+            "html": "={{ $('Clean_html').first().json.html }}",
+            "clean_html": "={{ $('Clean_html').first().json.clean_html }}",
+            "links": "={{ $('Clean_html').first().json.links.internal }}",
+            "chunks": "={{ $json.merged_chunk }}",
+            "chunk_count": "={{ $json.chunk_count }}"
+          },
+          "matchingColumns": [
+            "source_link"
+          ],
+          "schema": [
+            {
+              "id": "source_link",
+              "displayName": "source_link",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "html",
+              "displayName": "html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "clean_html",
+              "displayName": "clean_html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "chunks",
+              "displayName": "chunks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "chunk_count",
+              "displayName": "chunk_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "req_time",
+              "displayName": "req_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "source_link",
+            "title",
+            "chunk_count"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2480,
+        420
+      ],
+      "id": "353329e5-634a-4a33-9aef-a41ac3f0727d",
+      "name": "Insert or update data to site table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Code').first().json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "completed",
+            "sitelink": "={{ $json.source_link }}"
+          },
+          "matchingColumns": [
+            "sitelink"
+          ],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2700,
+        420
+      ],
+      "id": "94876936-6850-49c4-94dc-4a1faeb8bbfa",
+      "name": "Update link scrapping status in intr_links table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "QU3y5I0CASWd8vTk",
+          "mode": "list",
+          "cachedResultName": "Recurrsive scrapper"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "business name": "={{ $('When Executed by Another Workflow').first().json[\"business name\"] }}"
+          },
+          "matchingColumns": [
+            "business name"
+          ],
+          "schema": [
+            {
+              "id": "business name",
+              "displayName": "business name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        340
+      ],
+      "id": "cfe5aafb-b622-4953-a6ff-1e0f21229239",
+      "name": "Execute Workflow",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Clean_html').first().json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "sitelink",
+              "value": "={{ $json.intr_links }}"
+            }
+          ]
+        },
+        "options": {
+          "outputColumns": [
+            "sitelink"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        640,
+        640
+      ],
+      "id": "0bb371f4-d2ec-49ec-bdb2-a6206fc68921",
+      "name": "Select rows from a table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "start-web-scrapping",
+        "authentication": "headerAuth",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        480
+      ],
+      "id": "63b2cbb4-332d-4828-a3c2-49c6598f1fd9",
+      "name": "Start Scrapping",
+      "webhookId": "3ff73751-4635-4a1f-b594-c35780b2a8ca",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "=\n  {\n\n    \"body\": {\n      \"business name\": \"{{ $json[\"business name\"] }}\"\n    }\n  } ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1900,
+        1160
+      ],
+      "id": "7259023e-f132-4abb-bc53-6b8c0d414eaa",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5678/webhook/start-web-scrapping",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "business name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -440,
+        360
+      ],
+      "id": "b462797c-f751-4fe7-b6dd-d5c8e0153dc2",
+      "name": "Re-start scrapping",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Start Scrapping').first().json.body['business name'] }}_tbl",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chunk_count": 0,
+            "source_link": "={{ $json.sitelink }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [
+            "source_link"
+          ],
+          "schema": [
+            {
+              "id": "source_link",
+              "displayName": "source_link",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "html",
+              "displayName": "html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "clean_html",
+              "displayName": "clean_html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "chunks",
+              "displayName": "chunks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "chunk_count",
+              "displayName": "chunk_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "req_time",
+              "displayName": "req_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "source_link"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -460,
+        560
+      ],
+      "id": "2f8ffebd-4069-48a0-8d3d-eb285b3fd465",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "73256f1d-1bd6-4d48-b232-66427a1acdc8",
+              "leftValue": "={{ $json.intr_links }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthLt",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        560
+      ],
+      "id": "7891b5bc-ca38-4865-8dab-7f29c8f61924",
+      "name": "If2",
+      "disabled": true
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Start scrapping": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/1.8.3",
+            "content-length": "29",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "host": "127.0.0.1:5678",
+            "connection": "keep-alive"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "business name": "scalesync"
+          },
+          "webhookUrl": "https://wa62ojtfpnmk9kps9hxzfw6f.hooks.n8n.cloud/webhook/scrap-recursive",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "business name": "zealousweb"
+        }
+      }
+    ],
+    "Start Scrapping": [
+      {
+        "json": {
+          "headers": {
+            "connection": "upgrade",
+            "host": "n8n.scalebot.in",
+            "x-real-ip": "140.245.28.102",
+            "x-forwarded-for": "140.245.28.102",
+            "x-forwarded-proto": "https",
+            "content-length": "29",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "authorization": "Bearer testauth",
+            "user-agent": "axios/1.8.3",
+            "accept-encoding": "gzip, compress, deflate, br"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "business name": "scalesync"
+          },
+          "webhookUrl": "https://n8n.scalebot.in/webhook/start-web-scrapping",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-05-22T17:41:40.280Z",
+      "updatedAt": "2025-05-22T17:41:40.280Z",
+      "role": "workflow:owner",
+      "workflowId": "QU3y5I0CASWd8vTk",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2025-08-19T08:56:41.814Z",
+  "versionId": "ddab855b-eb0d-4a3b-97d7-7af4fb28f67a"
+}
