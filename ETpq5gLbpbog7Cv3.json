@@ -1,0 +1,233 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Export Workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export Workflows": {
+      "main": [
+        [
+          {
+            "node": "Export Credentials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export Credentials": {
+      "main": [
+        [
+          {
+            "node": "git add",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "git add": {
+      "main": [
+        [
+          {
+            "node": "git commit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "git commit": {
+      "main": [
+        [
+          {
+            "node": "git push",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cron": {
+      "main": [
+        [
+          {
+            "node": "Export Workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-06-24T17:56:06.003Z",
+  "id": "ETpq5gLbpbog7Cv3",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "workflow and credential backup",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        20,
+        40
+      ],
+      "typeVersion": 1,
+      "id": "b6cd78a1-eeb9-4f5d-9ea5-7c51abeea5f9"
+    },
+    {
+      "parameters": {
+        "command": "npx n8n export:workflow --backup --output repo/workflows/"
+      },
+      "name": "Export Workflows",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        220,
+        -60
+      ],
+      "typeVersion": 1,
+      "id": "777238d3-62dc-42ce-b8c1-0fac52f9029c"
+    },
+    {
+      "parameters": {
+        "command": "npx n8n export:credentials --backup --output repo/credentials/"
+      },
+      "name": "Export Credentials",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        380,
+        -60
+      ],
+      "typeVersion": 1,
+      "id": "5e01ba7d-4b21-47c1-a65f-a4169abc2989"
+    },
+    {
+      "parameters": {
+        "command": "git -C repo init -b main && git -C repo add ."
+      },
+      "name": "git add",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        520,
+        -60
+      ],
+      "typeVersion": 1,
+      "id": "a872245b-ee6f-4110-91b0-e97a29a93baf"
+    },
+    {
+      "parameters": {
+        "command": "=git -C repo commit -m \"Auto backup ({{ new Date().toISOString() }})\""
+      },
+      "name": "git commit",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        700,
+        -60
+      ],
+      "typeVersion": 1,
+      "id": "1f3e75b1-a84f-4b5f-851b-8b3eb165cb2d"
+    },
+    {
+      "parameters": {
+        "command": "gh auth login"
+      },
+      "name": "git push",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        860,
+        -60
+      ],
+      "typeVersion": 1,
+      "id": "db30165c-02da-4b80-ba11-d6651ad5ca8e"
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 0
+            },
+            {
+              "hour": 12
+            },
+            {
+              "hour": 6
+            },
+            {
+              "hour": 18
+            }
+          ]
+        }
+      },
+      "name": "Cron",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        20,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "644500d0-1e24-449e-aeb9-f4c708f13a6f",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "command": "git -C repo config user.name \"Anand Shrivastava\" && git -C repo config user.email \"anandshrivastava04@gmail.com\" && git -C repo config --list"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        620,
+        -240
+      ],
+      "id": "3dfabb85-2be7-4ab2-b10d-bb8af65fbfbe",
+      "name": "Execute Command"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-06-24T17:56:06.003Z",
+      "updatedAt": "2025-06-24T17:56:06.003Z",
+      "role": "workflow:owner",
+      "workflowId": "ETpq5gLbpbog7Cv3",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-24T18:09:32.772Z",
+  "versionId": "900dd840-4da6-49e6-a935-e3bad39b3c4e"
+}
