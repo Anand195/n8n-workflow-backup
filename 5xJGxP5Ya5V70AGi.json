@@ -1,0 +1,434 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Morning Message list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Morning Message list": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send chat presence typing indicator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send chat presence typing indicator": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send jai shree krishna in morning": {
+      "main": [
+        [
+          {
+            "node": "Send chat presence typing indicator1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send chat presence typing indicator1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Send chat presence typing indicator3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send chat presence typing indicator2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "send jai shree krishna in morning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send chat presence typing indicator2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send chat presence typing indicator3": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-09T17:40:44.673Z",
+  "id": "5xJGxP5Ya5V70AGi",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Send Morning message on WA",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 45
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "4cda54f6-d7aa-421c-8b88-8c343f6edd3c",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "phoneNumber": "={{ $('Loop Over Items').first().json.number }}",
+        "message": "={{ $('Loop Over Items').first().json.message }}"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        100
+      ],
+      "id": "1bbd690b-54e0-453f-a6b2-2222aefc6c38",
+      "name": "send jai shree krishna in morning",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Loop over input items and add a new field called 'myNewField' to the JSON of each one\nmessages = [\n  # {\n  #       \"user\": \"appu vodaphone\",\n  #       \"number\": \"+919737687883\",\n  #       \"message\": \"Good morning \\nJai shree krishan\"\n  #   },\n  # {\n  #       \"user\": \"appu jio\",\n  #       \"number\": \"+918780176047\",\n  #       \"message\": \"Good morning \\nJai shree krishan\"\n  #   },\n    {\n        \"user\": \"mom vodafone\",\n        \"number\": \"+918980563023\",\n        \"message\": \"Good morning mummy\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"mom docomo\",\n        \"number\": \"+918866892733\",\n        \"message\": \"Good morning mummy\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"papa vodafone\",\n        \"number\": \"+919825158353\",\n        \"message\": \"Good morning papa\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"papa jio\",\n        \"number\": \"+916354903353\",\n        \"message\": \"Good morning papa\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"papa bsnl\",\n        \"number\": \"+919428246653\",\n        \"message\": \"Good morning papa\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"papa vodafone\",\n        \"number\": \"+919429305933\",\n        \"message\": \"Good morning papa\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"choksi dada\",\n        \"number\": \"+919376104808\",\n        \"message\": \"Good morning dadaji\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"renuka baa\",\n        \"number\": \"+919377332743\",\n        \"message\": \"Good morning baa\\nJai shree krishan\"\n    },\n  {\n        \"user\": \"vickybhai\",\n        \"number\": \"+918853787206\",\n        \"message\": \"Good morning \"\n    },\n  {\n        \"user\": \"aakash\",\n        \"number\": \"+919714671700\",\n        \"message\": \"Good morning \"\n    }\n]\n\nreturn {\"Total users\":len(messages),\"output\":messages}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "fd4e119b-70eb-4d77-b97b-2cc575ed5b83",
+      "name": "Morning Message list"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        460,
+        0
+      ],
+      "id": "c47d75bd-8b4e-473d-8b37-6da1a3c25811",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        680,
+        0
+      ],
+      "id": "2b8a910d-4bbd-48cd-bba6-31efc30e14a2",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "sendChatPresence",
+        "phoneNumber": "={{ $json.number }}"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        900,
+        100
+      ],
+      "id": "c89fd1d0-bc13-4295-9aaf-cb13c11098c2",
+      "name": "Send chat presence typing indicator",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendChatPresence",
+        "phoneNumber": "={{ $('Loop Over Items').first().json.number }}",
+        "chatPresenceAction": "stop"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        100
+      ],
+      "id": "70a2825e-b6db-40d4-abcc-ce1e1bfd1189",
+      "name": "Send chat presence typing indicator1",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumber": "+919737687883",
+        "message": "Messages sent to all user !"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        -100
+      ],
+      "id": "a987e5d0-0bcf-4cf7-a500-deca3b651ecc",
+      "name": "Send a text message",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        -100
+      ],
+      "id": "03d19d22-7c22-4c61-8459-35d0c4dbb73b",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -100
+      ],
+      "id": "1c91ad1d-10e6-4ef5-baf3-b04a69628999",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "amount": 3.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1080,
+        100
+      ],
+      "id": "cece9a5d-d572-4d8f-a051-943fa4ff49c8",
+      "name": "Wait",
+      "webhookId": "44f8012b-cd2b-44ba-b892-9b548bf94370"
+    },
+    {
+      "parameters": {
+        "operation": "sendChatPresence",
+        "phoneNumber": "=+919737687883"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        -100
+      ],
+      "id": "9d12b784-df0e-480e-9ea7-495c763ac8b1",
+      "name": "Send chat presence typing indicator2",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1240,
+        -100
+      ],
+      "id": "53fd318a-b116-4be4-a1f3-13c4611a05ef",
+      "name": "Wait1",
+      "webhookId": "44f8012b-cd2b-44ba-b892-9b548bf94370"
+    },
+    {
+      "parameters": {
+        "operation": "sendChatPresence",
+        "phoneNumber": "=+919737687883",
+        "chatPresenceAction": "stop"
+      },
+      "type": "@aldinokemal2104/n8n-nodes-gowa.gowa",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -100
+      ],
+      "id": "ebfb4051-882f-44b5-8bce-30a9beeed2f9",
+      "name": "Send chat presence typing indicator3",
+      "credentials": {
+        "goWhatsappApi": {
+          "id": "zWLy703arNh8XQet",
+          "name": "GOWA account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-09T17:40:44.673Z",
+      "updatedAt": "2025-08-09T17:40:44.673Z",
+      "role": "workflow:owner",
+      "workflowId": "5xJGxP5Ya5V70AGi",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:16.096Z",
+      "updatedAt": "2025-05-20T17:34:16.096Z",
+      "id": "liCl0zGuioDsVGfW",
+      "name": "Production"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-09T18:10:00.691Z",
+  "versionId": "bb2c737c-7922-4680-b462-dc5901eda2cb"
+}
