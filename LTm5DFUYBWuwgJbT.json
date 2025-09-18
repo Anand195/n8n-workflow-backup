@@ -1,0 +1,33 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-14T06:51:40.361Z",
+  "id": "LTm5DFUYBWuwgJbT",
+  "isArchived": false,
+  "meta": null,
+  "name": "My Sub-Workflow 1",
+  "nodes": [],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-07-14T06:51:40.361Z",
+      "updatedAt": "2025-07-14T06:51:40.361Z",
+      "role": "workflow:owner",
+      "workflowId": "LTm5DFUYBWuwgJbT",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-14T06:52:06.641Z",
+  "versionId": "c39282dd-b647-40d4-8974-efa53ef9c549"
+}
