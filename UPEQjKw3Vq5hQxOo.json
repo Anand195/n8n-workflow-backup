@@ -1,0 +1,1972 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Fetch_site_data": {
+      "main": [
+        [
+          {
+            "node": "Clean_html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check site presence": {
+      "main": [
+        [
+          {
+            "node": "site checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "site checker": {
+      "main": [
+        [
+          {
+            "node": "Fetch_site_data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enter site link": {
+      "main": [
+        []
+      ]
+    },
+    "extract sitename": {
+      "main": [
+        [
+          {
+            "node": "Create main table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create site table": {
+      "main": [
+        [
+          {
+            "node": "Upsert record in site table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean_html": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Chunks From Doc": {
+      "main": [
+        [
+          {
+            "node": "Chunks To List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chunks To List": {
+      "main": [
+        [
+          {
+            "node": "Generate Contextual Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Contextual Text": {
+      "main": [
+        [
+          {
+            "node": "Get Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Values": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Contextual Text",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge chunks into a large string",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge chunks into a large string": {
+      "main": [
+        [
+          {
+            "node": "Insert or update data to table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create table to store internal links temporary": {
+      "main": [
+        [
+          {
+            "node": "Create_verctor_store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Store temp links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store temp links": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Create Chunks From Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update data to table": {
+      "main": [
+        [
+          {
+            "node": "Update link scrapping status in intr tbl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create main table1": {
+      "main": [
+        [
+          {
+            "node": "Upsert record in main table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create_verctor_store": {
+      "main": [
+        [
+          {
+            "node": "upsert record in intr link table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert record in main table": {
+      "main": [
+        [
+          {
+            "node": "Create site table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check site presence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        [
+          {
+            "node": "trigger recurrsive scrapper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "health check": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "trigger recurrsive scrapper": {
+      "main": [
+        [
+          {
+            "node": "Trigger recurrsive scrappe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update link scrapping status in intr tbl": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert record in site table": {
+      "main": [
+        [
+          {
+            "node": "Create table to store internal links temporary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upsert record in intr link table": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check site presence1": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-05-18T14:24:18.911Z",
+  "id": "UPEQjKw3Vq5hQxOo",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Web scrapper",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        120
+      ],
+      "id": "8dd4c627-3523-471d-a99e-de84abca72ca",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "content": "## Create vector store with sitename if not present\n\nid\nsource_link\ntitle\ndescription\nchunk\nembedding\nreq_in",
+        "height": 260,
+        "width": 500,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        640,
+        -740
+      ],
+      "typeVersion": 1,
+      "id": "fb151bae-7dff-4c4c-85e4-d830ff5c7f79",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Create a DB table with sitename \n\ncolumns\nsource_link\nhtml\nclean_html\nchunks # seprated with \" ######------###### \"\nchunk_count\nreq_time",
+        "height": 300,
+        "width": 360,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -300,
+        -760
+      ],
+      "typeVersion": 1,
+      "id": "189e4df3-26a9-406f-98b5-8df33c203867",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Create main table if doesn't exist\n\ncolumns \nid\nsite_name\nvector_store_name\nstatus\nrequ_time\n",
+        "height": 240,
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        160,
+        -740
+      ],
+      "typeVersion": 1,
+      "id": "40d7e941-f2f2-4f85-b7b6-cca1fba5baf3",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://crawl4ai:11235/crawl",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"urls\":[\"{{ $('Enter site link').first().json.body.site_url }}\"]\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        -180
+      ],
+      "id": "6cfcebf4-aca5-440a-81be-449d7be79a01",
+      "name": "Fetch_site_data",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- DROP TABLE {{ $json.sitename }}_tbl;\n\nCREATE TABLE IF NOT EXISTS {{ $json.site_name }}_tbl (\n  source_link VARCHAR(255) PRIMARY KEY NOT NULL,\n  title TEXT DEFAULT '',\n  description TEXT DEFAULT '',\n  html TEXT DEFAULT '',\n  clean_html TEXT DEFAULT '',\n  links TEXT DEFAULT '',\n  chunks TEXT DEFAULT '',\n  chunk_count INT DEFAULT 0,\n  status VARCHAR(255) DEFAULT 'pending',\n  req_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP\n);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1360,
+        -360
+      ],
+      "id": "be366f13-d7b0-427d-ab09-ba0755e2efd9",
+      "name": "Create site table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        900,
+        20
+      ],
+      "id": "f534bfc1-f598-41fa-8d42-7920f3bf6fe9",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.site_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        -160
+      ],
+      "id": "5cdb0761-3405-40b2-b5fe-4e2ddf12ea99",
+      "name": "Check site presence",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3488bd2f-7fa5-47a6-a9d7-af5e6d919615",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        -160
+      ],
+      "id": "1239adbc-2a8a-42b0-9cfb-73fc803a2bb9",
+      "name": "site checker"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f334c44e-16d2-4b1e-b6e3-3ec99e880f50",
+              "name": "body",
+              "value": "={ \"site_url\":\"{{ $json.body.site_url }}\" } ",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        140
+      ],
+      "id": "c788b281-d633-45ba-ab8b-c8176376c23d",
+      "name": "Enter site link"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "from urllib.parse import urlparse\nimport re\nurl = _('Enter site link').first().json.body.site_url\ndef extract_site_name(url):\n    try:\n        # Add http:// if no protocol specified\n        if not url.startswith(('http://', 'https://')):\n            url = 'http://' + url\n        \n        # Parse the URL\n        parsed = urlparse(url)\n        \n        # Get domain without www and split by dots\n        domain = parsed.netloc.replace('www.', '')\n        \n        # Get the main part (excluding TLD)\n        site_name = domain.split('.')[0]\n        \n        # Clean up any special characters and capitalize\n        site_name = re.sub(r'[^a-zA-Z0-9-]', '', site_name)\n        return site_name\n    \n    except Exception as e:\n        return \"Invalid URL\"\n\nreturn {\"sitename\":extract_site_name(url),\n       \"url\":url}\n# # Test cases\n# test_urls = [\n#     'https://www.scalesync.io/',\n#     'http://example.com',\n#     'https://blog.example.co.uk/',\n#     'www.test-site.com',\n#     'https://sub.domain.example.com/',\n#     'invalid-url',\n#     'https://www.google.com',\n#     'amazon.com'\n# ]\n\n# links = {}\n# # Test the function\n# for url in test_urls:\n#     # print(f\"URL: {url}\")\n#     # print(f\"Site Name: {extract_site_name(url)}\\n\")\n#     links[url]=extract_site_name(url)\n\n# return links\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        -360
+      ],
+      "id": "719cad94-a70b-47f3-b118-aa07478d0c6a",
+      "name": "extract sitename"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -360
+      ],
+      "id": "fb5a071f-5ac8-4dbc-aff8-1ace1e5cc107",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "import re\nhtml_content = _input.first().json.results[0].cleaned_html\n\nfrom urllib.parse import urlparse\nimport re\nurl = _input.first().json.results[0].url\ndef extract_site_name(url):\n    try:\n        # Add http:// if no protocol specified\n        if not url.startswith(('http://', 'https://')):\n            url = 'http://' + url\n        \n        # Parse the URL\n        parsed = urlparse(url)\n        \n        # Get domain without www and split by dots\n        domain = parsed.netloc.replace('www.', '')\n        \n        # Get the main part (excluding TLD)\n        site_name = domain.split('.')[0]\n        \n        # Clean up any special characters and capitalize\n        site_name = re.sub(r'[^a-zA-Z0-9-]', '', site_name)\n        return site_name\n    \n    except Exception as e:\n        return \"Invalid URL\"\n\ndef clean_html_content(html_content):\n    if not html_content:\n        return \"\"\n\n    html_content = re.sub(r'<nav[^>]*>.*?</nav>', '', html_content, flags=re.DOTALL | re.IGNORECASE)\n    html_content = re.sub(r'<\\s*(br|div)\\s*/?>', ' ', html_content, flags=re.IGNORECASE)\n    html_content = re.sub(r'(?:<[^>]+>)+', ' ', html_content)\n\n    html_entities = {\n        '&nbsp;': ' ', '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '\"',\n        '&#39;': \"'\", '&ldquo;': '\"', '&rdquo;': '\"', '&lsquo;': \"'\", '&rsquo;': \"'\",\n        '&ndash;': '–', '&mdash;': '—'\n    }\n    for entity, replacement in html_entities.items():\n        html_content = html_content.replace(entity, replacement)\n\n    sentences = re.split(r'(?<=[.!?]) +', html_content)\n    seen = set()\n    unique_sentences = []\n    for sentence in sentences:\n        s = sentence.strip()\n        if s and s not in seen:\n            seen.add(s)\n            unique_sentences.append(s)\n\n    cleaned_text = ' '.join(unique_sentences)\n    cleaned_text = re.sub(r'\\s+', ' ', cleaned_text).strip()\n\n    return cleaned_text\n\ndef extract_intr_links(link_list):\n  linkList = []\n  for l in link_list:\n    linkList.append(l[\"href\"])\n  return linkList\nintrLinks = []\ntitle= \"\"\ndescription  = \"\"\ntry:\n  title = _input.first().json.results[0].metadata.title\n  description = _input.first().json.results[0].metadata.description\n  intrLinks = _input.first().json.results[0].links.internal\nexcept Exception as e:\n  pass\nreturn {\n  \"site_name\":extract_site_name(url),\n  \"url\":_input.first().json.results[0].url,\n  \"title\":title,\n  \"description\":description,\n  \"html\":_input.first().json.results[0].html,\n  \"clean_html\":clean_html_content(html_content),\n  \"links\":_input.first().json.results[0].links,\n  \"date\":_input.first().json.results[0].response_headers.date,\n  \"intr_links\": extract_intr_links(intrLinks) if len(intrLinks) > 0 else []\n       }"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        -180
+      ],
+      "id": "727a5258-2a12-4d79-9367-7357b3994086",
+      "name": "Clean_html"
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{\n{\n  \"content\": `${ $json.text }\\n---\\n${ $json.chunk }`\n}\n}}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "=title",
+                "value": "={{ $('Clean_html').first().json.title || '' }}"
+              },
+              {
+                "name": "description",
+                "value": "={{ $('Clean_html').first().json.description || '' }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "7774c2b2-6c74-449b-a64f-99f50d0f426c",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        3380,
+        180
+      ],
+      "id": "d29ce022-d3ea-49ab-8055-c5c04954ed35",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const chunks = [];\nconst chunkSize = 600;\nconst chunkOverlap = 0;\n// const text = $json.clean_html.replace(/\\n/, '');\nconst text = $('Clean_html').first().json.clean_html.replace(/\\n/, '');\n\nfor (let i=0, j=Math.round(text.length/chunkSize); i<j; i++) {\n  chunks.push(\n    text.substr(\n      Math.max(0,(i * chunkSize)-chunkOverlap),\n      chunkSize\n    )\n  );\n}\n\nreturn { chunks };"
+      },
+      "id": "ceb7f06b-8a0d-496c-ba9d-d85183440b67",
+      "name": "Create Chunks From Doc",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2140,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "chunks",
+        "options": {
+          "destinationFieldName": "chunk"
+        }
+      },
+      "id": "6a24a23d-b45e-48ad-af55-4490ddf1716e",
+      "name": "Chunks To List",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<document> \n{{ $('Clean_html').item.json.clean_html }}\n</document>\nHere is the chunk we want to situate within the whole document \n<chunk> \n{{ $json.chunk }}\n</chunk> \nPlease give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk. Answer only with the succinct context and nothing else. "
+      },
+      "id": "07955078-f177-44bb-ab30-44f4a84203c7",
+      "name": "Generate Contextual Text",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        2560,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "069d067c-3534-4939-8ff4-34dee02a9436",
+              "name": "chunk",
+              "value": "={{ $('Chunks To List').first().json.chunk }}",
+              "type": "string"
+            },
+            {
+              "id": "24e01f4f-e156-47e9-a89e-9cbdccda6bd4",
+              "name": "text",
+              "value": "={{ $('Generate Contextual Text').first().json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a10da575-125a-4281-b41c-7cd4ac02c4c0",
+      "name": "Get Values",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2920,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "=ns_{{ $('Clean_html').first().json.site_name }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        3260,
+        -160
+      ],
+      "id": "fa983d98-2492-4d64-9dfc-22dc8be90aa2",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        40
+      ],
+      "id": "e58f56a1-1fcb-47c9-a085-68b225824020",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        40
+      ],
+      "id": "234a7b09-976c-4373-8294-7686b9c81f6c",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "iWd5mTct5GkZU8Q1",
+          "name": "Google Gemini(PaLM) Api (Free)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "ns_scalesync",
+          "mode": "list",
+          "cachedResultName": "ns_scalesync"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1280,
+        -880
+      ],
+      "id": "609e7e5f-23ee-4439-9d8f-c4dbc324418a",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- drop table ns_scalesync;\n-- DROP TABLE scalesync_tbl;\ndrop table scalesync_intr_tbl;\n--   -- Enable the pgvector extension\n-- create extension if not exists vector;\n\n-- -- Create the table\n-- create table if not EXISTS ns_scalesync (  -- Replace 'documents' with your desired table name\n--     id serial primary key,  -- Added primary key\n--     content text,\n--     metadata jsonb,\n--     embedding vector(768)\n-- );\n\n-- -- Create the search function\n-- create or replace function match_documents (\n--     query_embedding vector(768),\n--     match_threshold float DEFAULT 0.8,\n--     match_count int DEFAULT 5,\n--     filter jsonb DEFAULT '{}'\n-- )\n-- returns table (\n--     id int,\n--     content text,\n--     metadata jsonb,\n--     similarity float\n-- )\n-- language plpgsql\n-- as $$\n-- begin\n--     return query\n--     SELECT\n--         d.id,\n--         d.content,\n--         d.metadata,\n--         1 - (d.embedding <=> query_embedding) as similarity\n--     FROM ns_{{ $('Clean_html').item.json.site_name }} d\n--     WHERE\n--         case\n--             when filter::text = '{}'::text then true\n--             else d.metadata @> filter\n--         end\n--         AND 1 - (d.embedding <=> query_embedding) > match_threshold\n--     ORDER BY d.embedding <=> query_embedding\n--     LIMIT match_count;\n-- end;\n-- $$;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1580,
+        -880
+      ],
+      "id": "51070966-a39b-4f2a-8577-f603d82472d2",
+      "name": "Create_verctor_store1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3080,
+        -360
+      ],
+      "id": "808057ab-4cd8-4532-9b58-f5d2a072008c",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "content": "## TODO's\n\n- Handle duplicate chunk insertion\n- Add column in the main table \"internal_links\", Put the internal links grabbed from crawl4ai as a set.\n- Add the looping to continue scrapping the web data\n- Grab the link form temp_intr_link table to loop over the data scrapping\n- replace .item with .first() in every node in every expression\n- Create main table, business table , bsiness intr links table and ns_business table if not exists",
+        "height": 300,
+        "width": 540
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2000,
+        -780
+      ],
+      "typeVersion": 1,
+      "id": "76bc2fcb-5b57-4a7a-93e8-de41dcf66f89",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "chunkList = _input.first().json.data\nchunkText = \" chunk : 0 \\n\"\nchunkCount = 0\nfor chunk in chunkList:\n  chunkCount += 1\n  chunkText += chunk[\"text\"]+\" --- \"+chunk[\"chunk\"]+\"\\n  ######------###### \\n chunk : \"+str(chunkCount)+\"\\n\"\n  \nreturn {\"merged_chunk\":chunkText.strip(),\n       \"chunk_count\":chunkCount}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3260,
+        -360
+      ],
+      "id": "1e79a85e-155f-499f-a3dc-c092ce47d212",
+      "name": "Merge chunks into a large string"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Clean_html').first().json.site_name }}_tbl",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "source_link": "={{ $('Clean_html').first().json.url }}",
+            "title": "={{ $('Clean_html').first().json.title }}",
+            "description": "={{ $('Clean_html').first().json.description  || '' }}",
+            "html": "={{ $('Clean_html').first().json.html }}",
+            "clean_html": "={{ $('Clean_html').first().json.clean_html }}",
+            "links": "={{ $('Clean_html').first().json.links.internal }}",
+            "chunks": "={{ $json.merged_chunk }}",
+            "chunk_count": "={{ $json.chunk_count }}",
+            "status": "completed"
+          },
+          "matchingColumns": [
+            "source_link"
+          ],
+          "schema": [
+            {
+              "id": "source_link",
+              "displayName": "source_link",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "html",
+              "displayName": "html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "clean_html",
+              "displayName": "clean_html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "chunks",
+              "displayName": "chunks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "chunk_count",
+              "displayName": "chunk_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "req_time",
+              "displayName": "req_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "source_link",
+            "title",
+            "chunk_count"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        3460,
+        -360
+      ],
+      "id": "aec33cd0-8fea-442b-8927-48fe685ff3e3",
+      "name": "Insert or update data to table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- drop TABLE {{ $('extract sitename').first().json.sitename }}_intr_links;\n\nCREATE TABLE IF NOT EXISTS {{ $('Upsert record in main table').first().json.site_name }}_intr_links (\n    sitelink VARCHAR(255) PRIMARY KEY NOT NULL,\n    status VARCHAR(255) DEFAULT 'pending',\n    in_time TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP\n);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1820,
+        -360
+      ],
+      "id": "ef6bd030-702c-4099-96af-aebee515cbef",
+      "name": "Create table to store internal links temporary",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Clean_html').first().json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sitelink": "={{ $json.intr_links }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1640,
+        -20
+      ],
+      "id": "e43b1d4a-caae-48e2-8f71-dea1cafeeb71",
+      "name": "Store temp links",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "intr_links",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        -180
+      ],
+      "id": "e427c288-167a-4550-a041-846ee30e8419",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1440,
+        -160
+      ],
+      "id": "78e0b2f8-2bed-4894-bdae-04ddc46d5469",
+      "name": "Loop Over Items",
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "return {\"site_name\":_('Clean_html').first().json.site_name,\n       \"url\":_('Clean_html').first().json.url,\n        \"title\":_('Clean_html').first().json.title,\n        \"description\":_('Clean_html').first().json.description,\n        \"html\":_('Clean_html').first().json.html\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        -160
+      ],
+      "id": "42667af6-6ead-4404-8965-9a0c7c384f85",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "sitelink"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        -160
+      ],
+      "id": "6438fafa-db3a-4a91-84e0-c6d95c7392dc",
+      "name": "Aggregate1",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- DROP TABLE sites_main_tbl;\n\n  CREATE TABLE IF NOT EXISTS sites_main_tbl (\n    site_name VARCHAR(255) PRIMARY KEY NOT NULL,\n    url VARCHAR(255) DEFAULT '',\n    vector_store_name VARCHAR(255) DEFAULT '',\n    status VARCHAR(255) DEFAULT 'pending',\n    requ_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        900,
+        -360
+      ],
+      "id": "73917135-d624-463b-bab1-54b6cfba88cf",
+      "name": "Create main table1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- 1. (Optional) Drop existing table if you really want to start fresh\n-- DROP TABLE IF EXISTS ns_scalesync;\n\n-- 2. Ensure the pgvector extension is enabled\nCREATE EXTENSION IF NOT EXISTS vector;\n\n-- 3. Create your table (renaming `text` to `raw_text` to avoid conflicts)\nCREATE TABLE IF NOT EXISTS ns_{{ $('extract sitename').first().json.sitename }} (\n    id       SERIAL PRIMARY KEY,\n    content  TEXT,\n    text TEXT,\n    metadata JSONB,\n    embedding VECTOR(768)\n);\n\n-- 4. Create or replace the search function\nCREATE OR REPLACE FUNCTION match_documents (\n    query_embedding VECTOR(768),\n    match_threshold FLOAT     DEFAULT 0.8,\n    match_count     INT       DEFAULT 5,\n    filter          JSONB     DEFAULT '{}'\n)\nRETURNS TABLE (\n    id         INT,\n    content    TEXT,\n    metadata   JSONB,\n    similarity FLOAT\n)\nLANGUAGE plpgsql\nAS $$\nBEGIN\n    RETURN QUERY\n    SELECT\n        d.id,\n        d.content,\n        d.metadata,\n        1 - (d.embedding <=> query_embedding) AS similarity\n    FROM ns_{{ $('extract sitename').first().json.sitename }} AS d\n    WHERE\n        -- if no filter provided, include all; otherwise only rows matching filter\n        (filter = '{}'::jsonb OR d.metadata @> filter)\n        AND (1 - (d.embedding <=> query_embedding)) > match_threshold\n    ORDER BY d.embedding <=> query_embedding  -- closest vectors first\n    LIMIT match_count;\nEND;\n$$;\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2080,
+        -360
+      ],
+      "id": "7eee39c5-a166-49c6-85e4-4fad73e6b958",
+      "name": "Create_verctor_store",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "sites_main_tbl",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "site_name": "={{ $('extract sitename').first().json.sitename }}",
+            "url": "={{ $('extract sitename').first().json.url }}",
+            "vector_store_name": "=ns_ {{ $('extract sitename').first().json.sitename }}"
+          },
+          "matchingColumns": [
+            "site_name"
+          ],
+          "schema": [
+            {
+              "id": "site_name",
+              "displayName": "site_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "vector_store_name",
+              "displayName": "vector_store_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "requ_time",
+              "displayName": "requ_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "site_name",
+            "url"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1140,
+        -360
+      ],
+      "id": "c8286123-8fbb-4af7-a58d-ec475d68cc19",
+      "name": "Upsert record in main table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DROP TABLE ns_serenityspa;\nDROP TABLE serenityspa_intr_links;\nDROP TABLE  serenityspa_tbl;\nDROP TABLE ns_scalesync;\nDROP TABLE scalesync_intr_links;\nDROP TABLE  scalesync_tbl;\nDROP TABLE sites_main_tbl;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1280,
+        -620
+      ],
+      "id": "87337746-63df-417b-a7bd-56395558a1b8",
+      "name": "Delete tables",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1600,
+        -620
+      ],
+      "id": "8a0e12d7-4459-4fe3-bd69-d58aa8e9282a",
+      "name": "check table",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "process",
+        "authentication": "headerAuth",
+        "options": {
+          "rawBody": true,
+          "responseData": "Scrapping started"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -160
+      ],
+      "id": "a1c80e8f-b813-4270-a7a6-1edc75b564ba",
+      "name": "Webhook",
+      "webhookId": "e17d9dd3-191d-45fc-80cf-ce024095a5e6",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        340
+      ],
+      "id": "4f41e547-b763-4e20-9877-7dabdc3fb06e",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3900,
+        -360
+      ],
+      "id": "02c0c628-d607-4126-b3ac-d7f275bf9e83",
+      "name": "No Operation, do nothing2"
+    },
+    {
+      "parameters": {
+        "path": "health",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        480
+      ],
+      "id": "df06c415-bf00-419b-9c80-5f897c6131b9",
+      "name": "health check",
+      "webhookId": "646e86e9-a19d-48ea-942f-7d2616078e05"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"ok\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        480
+      ],
+      "id": "b2762e32-2590-4d2e-9683-a7c14aa996b7",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5678/webhook/scrap-recursive",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "business name",
+              "value": "={{ $('Code').first().json.site_name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3940,
+        -160
+      ],
+      "id": "2aadee9d-add4-4e0f-9685-f910af30d774",
+      "name": "Trigger recurrsive scrappe",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "metadata.source"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        -160
+      ],
+      "id": "59bde4f0-a5c6-4c68-8182-31d040243e85",
+      "name": "trigger recurrsive scrapper"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('Code').first().json.site_name }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "sitelink": "={{ $('Clean_html').item.json.url }}",
+            "status": "completed"
+          },
+          "matchingColumns": [
+            "sitelink"
+          ],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        3660,
+        -360
+      ],
+      "id": "77f6a457-e717-4fd4-ba90-f7fcc830e9c0",
+      "name": "Update link scrapping status in intr tbl",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('extract sitename').first().json.sitename }}_tbl",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "source_link": "={{ $('extract sitename').first().json.url }}",
+            "status": "in-progress"
+          },
+          "matchingColumns": [
+            "source_link"
+          ],
+          "schema": [
+            {
+              "id": "source_link",
+              "displayName": "source_link",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "html",
+              "displayName": "html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "clean_html",
+              "displayName": "clean_html",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "links",
+              "displayName": "links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "chunks",
+              "displayName": "chunks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "chunk_count",
+              "displayName": "chunk_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "req_time",
+              "displayName": "req_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "source_link",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1580,
+        -360
+      ],
+      "id": "4a889510-af49-4f88-bb0b-b3418bcaebe3",
+      "name": "Upsert record in site table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ $('extract sitename').first().json.sitename }}_intr_links",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "in-progress",
+            "sitelink": "={{ $('Upsert record in site table').first().json.source_link }}"
+          },
+          "matchingColumns": [
+            "sitelink"
+          ],
+          "schema": [
+            {
+              "id": "sitelink",
+              "displayName": "sitelink",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "in_time",
+              "displayName": "in_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "outputColumns": [
+            "sitelink",
+            "status"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2300,
+        -360
+      ],
+      "id": "6b81b0ba-07c2-437b-a8d9-1b73065ef08c",
+      "name": "upsert record in intr link table",
+      "credentials": {
+        "postgres": {
+          "id": "2azFFpMGBHurvJ3H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "site_url"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        300
+      ],
+      "id": "ec66a3a3-8c92-4c11-9fe1-9a97eb178598",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.site_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        120
+      ],
+      "id": "2d94fc82-7a9f-4381-bee7-0ed26530f51b",
+      "name": "Check site presence1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "=  {\n    \"body\": {\n      \"site_url\": \"{{ $json.site_url }}\"\n    }\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        300
+      ],
+      "id": "47357b2f-4a1d-4327-a066-06382e50badc",
+      "name": "Edit Fields"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.44.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "2f744c1b-c61e-42f8-9905-a4d37c379e96",
+            "host": "140.245.28.102:5678",
+            "accept-encoding": "gzip, deflate, br",
+            "connection": "keep-alive",
+            "content-length": "48"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "site_url": "https://www.zealousweb.com"
+          },
+          "webhookUrl": "https://wa62ojtfpnmk9kps9hxzfw6f.hooks.n8n.cloud/webhook/process",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "site_url": "https://www.zealousweb.com"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-05-18T14:24:18.911Z",
+      "updatedAt": "2025-05-18T14:24:18.911Z",
+      "role": "workflow:owner",
+      "workflowId": "UPEQjKw3Vq5hQxOo",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2025-08-03T07:43:23.557Z",
+  "versionId": "02e9126b-48b8-403b-a87c-a221f06f9b65"
+}
