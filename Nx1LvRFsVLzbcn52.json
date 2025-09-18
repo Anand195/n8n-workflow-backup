@@ -1,0 +1,103 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-30T17:06:09.165Z",
+  "id": "Nx1LvRFsVLzbcn52",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Data collection form",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "scalebot/collection-form",
+        "authentication": "headerAuth",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        -120
+      ],
+      "id": "c299bbfc-9a08-4417-9eda-a290eeb84686",
+      "name": "Webhook",
+      "webhookId": "be981c1a-0c1b-46ae-b359-b29433adb599",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "E9sdBVqz4PVwvKF5",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -300,
+        -120
+      ],
+      "id": "46e0610e-6f9b-47e7-8426-158d64ffad35",
+      "name": "Append row in sheet"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "Anand195",
+    "name": "n8n-workflow-backup"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-06-30T17:06:09.165Z",
+      "updatedAt": "2025-06-30T17:06:09.165Z",
+      "role": "workflow:owner",
+      "workflowId": "Nx1LvRFsVLzbcn52",
+      "projectId": "OIoIbl5Twq202Qgs"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T17:34:10.904Z",
+      "updatedAt": "2025-05-20T17:34:10.904Z",
+      "id": "Nz2LEiSs5mECwYuQ",
+      "name": "Development"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-30T17:07:53.862Z",
+  "versionId": "96f38f8a-600c-441a-a033-ce946fb86f40"
+}
